@@ -1,7 +1,7 @@
 # Project-1
 
 ## Description
-Description goes here.
+App created for users to search destinations that will display weather, flight and hotel information, along with restaurant locations.
 
 ## Sketch
 
