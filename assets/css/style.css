@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========== TRAVEL.HTML PAGE ========== */
+
+/* ===== OPENWEATHER CONTAINER ===== */
+.row {
+    border: 2px solid #000;
+}
+
+.forecast-card {
+    width: 20%;
+    border-right: 1px solid #000;
+}
+
+#day5 {
+    border-right: none;
+}
