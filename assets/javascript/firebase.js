@@ -9,4 +9,6 @@ var firebaseConfig = {
     appId: "1:811913379053:web:3f6e668187ab670e"
   };
 
+  firebase.initializeApp(firebaseConfig);
+  
   var database = firebase.database()
