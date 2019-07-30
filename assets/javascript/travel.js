@@ -17,6 +17,7 @@ var database = firebase.database();
 // ===== CLICK HANDLER FOR THE SEARCH BUTTON =====
 $("#searchButton").on("click", function (event) {
     // ===== Retrieving data from the user's requests =====
+    var startDest = $('#startDest').val().trim();
     var destination = $("#destination").val().trim();
     var startDate = $("#start").val().trim();
     var endDate = $("#end").val().trim();
@@ -27,6 +28,7 @@ $("#searchButton").on("click", function (event) {
 
     // ===== Pushing the data to Firebase =====
     database.ref().push( {
+        startDest : startDest,
         destination: destination,
         startDate: startDate,
         endDate: endDate,
