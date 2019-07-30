@@ -30,50 +30,56 @@
     </nav>
     
     <!-- ===== CONTAINER FOR USER REQUESTED HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
-    <div class="container d-flex justify-content-center mb-3">
-        <button type="button" class="btn btn-light">Flights</button>
-        <button type="button" class="btn btn-light">Hotels</button>
-        <button type="button" class="btn btn-light">Food</button>
-    </div>
-    
-    <!-- ===== WEATHER FORECAST FOR CITY REQUESTED ===== -->
-    <div class="container">
-    
-        <div class="row" style="width: 20rem; height: 200px">
-            <div class="forecast-card" id="day1">
-                
-            </div>
-            <div class="forecast-card" id="day2">
-                
-            </div>
-            <div class="forecast-card" id="day3">
-            
-            </div>
-            <div class="forecast-card" id="day4">
+    <div class="container mb-3">
+        <div class="row d-flex justify-content-center">
+            <button type="button" class="btn btn-light mr-2">Flights</button>
+            <button type="button" class="btn btn-light mr-2">Hotels</button>
+            <button type="button" class="btn btn-light mr-4">Food</button>
+        </div>
 
-            </div>
-            <div class="forecast-card" id="day5">
+           
+        <!-- ===== WEATHER FORECAST FOR CITY REQUESTED ===== --> 
+        <div class="container">
+            <div class="row d-flex justify-content-end">
+                <div class="forecast-card" id="day1">
+                    
+                </div>
+                <div class="forecast-card" id="day2">
+                    
+                </div>
+                <div class="forecast-card" id="day3">
+                
+                </div>
+                <div class="forecast-card" id="day4">
 
+                </div>
+                <div class="forecast-card" id="day5">
+
+                </div>
             </div>
         </div>
     </div>
-
+    
+    
 
 
 
     <!-- ===== JQUERY CDN ===== -->
     <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
     <!-- ===== POPPER.JS CDN ===== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous">
+    </script>
     <!-- ===== BOOTSTRAP/JS CDN ===== -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous">
+    </script>
     <!-- ===== FIREBASE CDNs ===== -->
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
