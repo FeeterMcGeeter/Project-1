@@ -2,9 +2,6 @@
     box-sizing: border-box;
 }
 
-body {
-    
-}
 
 
 
@@ -22,7 +19,7 @@ body {
 
 /* ===== OPENWEATHER CONTAINER ===== */
 .forecast-card {
-    width: 50px;
+    width: 200px;
     height: 100px;
     border: 1px solid #000;
 }

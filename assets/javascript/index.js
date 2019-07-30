@@ -19,13 +19,13 @@ $("#searchButton").on("click", function (event) {
     })
 
     // ==== VARIABLES FOR OPENWEATHER API =====
-    var APIKey = "3703659783afa99dd31d2449ec636a6c";
+    var weatherAPIKey = "3703659783afa99dd31d2449ec636a6c";
     var city = $("#destination").val();
-    var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${APIKey}`;
+    var weatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${weatherAPIKey}`;
 
     // ===== AJAX CALL TO OPENWEATHER =====
     $.ajax({
-        url: queryURL,
+        url: weatherURL,
         method: "GET"
     }).then(function (weatherData) {
         var hoursArray = weatherData.list;
@@ -39,25 +39,31 @@ $("#searchButton").on("click", function (event) {
             return true;
         }
         // ===== APPENDING THE DATA TO THE WEATHER CARD ===== 
-        var dayOne = $("#day1");
-        var dayTwo = $("#day2");
-        var dayThree = $("#day3");
-        var dayFour = $("#day4");
-        var dayFive = $("#day5");
-
-        var iconOne = weatherData.weather.icon
-        var tempOne = weatherData.main.temp;
-        var dayOne = weatherData.dt_txt;
+        var weatherDivOne = $("<div class='day-one");
+        var descriptionElement = $("<p>").text(dailyWeather[0].weather[0].description);
+        var dayElement = $("<p>").text(dailyWeather[0].dt_txt);
         
-        var iconElement = $("<p>").text(iconOne);
-        var tempElement = $("<h3>").text(tempOne);
-        var dayElement = $("<p>").text(dayOne);
+        weatherDivOne.append($("<p>").text(dailyWeather[0].main.temp));
 
+        $("#day1").append(weatherDivOne);
         // weatherDiv.append(tempElement);
         // weatherDiv.append(iconElement);
         // weatherDiv.append(dayElement);
-        })
-        console.log(dailyWeather);
-        console.log(tempOne);
     })
+        console.log(dailyWeather);
+    })
+
+    // ===== VARIABLE FOR ZOMATO API URL =====
+    var foodAPIKey = "fee4a18f3c4f28a7c1124fbfb053b3b2";
+    var foodURL = `https://developers.zomato.com/api/v2.1/search?entity_type=city&q=${city}&count=5&sort=rating&order=desc&apikey=${foodAPIKey}`;
+
+    // ===== AJAX CALL TO ZOMATO ===== 
+    $.ajax({
+        url: foodURL,
+        method: "GET"
+    }).then(function (foodData) {
+        console.log(foodData);
+        
+    })
+
 })
