@@ -29,3 +29,19 @@ var endDate = '';
 var startPlace = '';
 
 console.log(id);
+
+//======= Firebase Snapshot and then ajax calls ========
+
+dbUser.on('value', function (snapshot) {
+    var sv = snapshot.val();
+    destination = sv.destination;
+    startDate = sv.startDate;
+    endDate = sv.endDate;
+    startPlace = sv.startPlace;
+
+    //console.log(destination);
+    //console.log(startDate);
+    //console.log(endDate);
+    //console.log(startPlace);
+
+})
