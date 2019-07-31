@@ -14,6 +14,12 @@ firebase.initializeApp(firebaseConfig);
 // ===== Variable for database reference =====
 var database = firebase.database();
 
+// ===== Variable for storing randomly generated key to localeStorage =====
+var id = '';
+
+// ==== Variable database ref object to the child userSearch ====
+var dbUser = database.ref().child('user');
+
 // ===== CLICK HANDLER FOR THE SEARCH BUTTON =====
 $("#searchButton").on("click", function (event) {
 
@@ -29,13 +35,19 @@ $("#searchButton").on("click", function (event) {
     console.log(endDate);
 
     // ===== Pushing the data to Firebase =====
-    database.ref().push({
+    dbUser.push({
         startPlace: startPlace,
         destination: destination,
         startDate: startDate,
         endDate: endDate,
     })
-  
+
+    // ====== Storing randomly generated key to localStorage as user ====
+    dbUser.on('child_added', function (snapshot) {
+        id = snapshot.key
+    })
+    localStorage.setItem('user', id)
+    
     // ==== VARIABLES FOR OPENWEATHER API =====
     var weatherAPIKey = "3703659783afa99dd31d2449ec636a6c";
     var city = $("#destination").val();
@@ -48,26 +60,26 @@ $("#searchButton").on("click", function (event) {
     }).then(function (weatherData) {
         var hoursArray = weatherData.list;
         var dailyWeather = hoursArray.filter(function (value) {
-        var dtTxt = value.dt_txt;
-        var timeIndex = dtTxt.indexOf("12:00:00");
-            
-        if (timeIndex === -1) {
-            return false;
-        } else {
-            return true;
-        }
-        // ===== APPENDING THE DATA TO THE WEATHER CARD ===== 
-        var weatherDivOne = $("<div class='day-one");
-        var descriptionElement = $("<p>").text(dailyWeather[0].weather[0].description);
-        var dayElement = $("<p>").text(dailyWeather[0].dt_txt);
-        
-        weatherDivOne.append($("<p>").text(dailyWeather[0].main.temp));
+            var dtTxt = value.dt_txt;
+            var timeIndex = dtTxt.indexOf("12:00:00");
 
-        $("#day1").append(weatherDivOne);
-        // weatherDiv.append(tempElement);
-        // weatherDiv.append(iconElement);
-        // weatherDiv.append(dayElement);
-    })
+            if (timeIndex === -1) {
+                return false;
+            } else {
+                return true;
+            }
+            // ===== APPENDING THE DATA TO THE WEATHER CARD ===== 
+            var weatherDivOne = $("<div class='day-one");
+            var descriptionElement = $("<p>").text(dailyWeather[0].weather[0].description);
+            var dayElement = $("<p>").text(dailyWeather[0].dt_txt);
+
+            weatherDivOne.append($("<p>").text(dailyWeather[0].main.temp));
+
+            $("#day1").append(weatherDivOne);
+            // weatherDiv.append(tempElement);
+            // weatherDiv.append(iconElement);
+            // weatherDiv.append(dayElement);
+        })
         console.log(dailyWeather);
     })
 
@@ -81,7 +93,7 @@ $("#searchButton").on("click", function (event) {
         method: "GET"
     }).then(function (foodData) {
         console.log(foodData);
-        
+
     })
 
 })
