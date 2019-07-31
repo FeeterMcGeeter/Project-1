@@ -1,6 +1,21 @@
+// ===== FIREBASE CONFIGURATION ===== 
+var firebaseConfig = {
+    apiKey: "AIzaSyAbOz7Rc8Sy34ZeQnRnZrLrEB0UFisJOuo",
+    authDomain: "project-1-62259.firebaseapp.com",
+    databaseURL: "https://project-1-62259.firebaseio.com",
+    projectId: "project-1-62259",
+    storageBucket: "",
+    messagingSenderId: "811913379053",
+    appId: "1:811913379053:web:3f6e668187ab670e"
+};
+// ===== Initialize Firebase =====
+firebase.initializeApp(firebaseConfig);
+
+// ===== Variable for database reference =====
+var database = firebase.database();
+
 // ===== CLICK HANDLER FOR THE SEARCH BUTTON =====
 $("#searchButton").on("click", function (event) {
-    event.preventDefault();
 
     // ===== Retrieving data from the user's requests =====
     var destination = $("#destination").val().trim();
@@ -17,7 +32,7 @@ $("#searchButton").on("click", function (event) {
         startDate: startDate,
         endDate: endDate,
     })
-
+  
     // ==== VARIABLES FOR OPENWEATHER API =====
     var weatherAPIKey = "3703659783afa99dd31d2449ec636a6c";
     var city = $("#destination").val();
