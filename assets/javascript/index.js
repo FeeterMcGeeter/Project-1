@@ -22,7 +22,8 @@ var dbUser = database.ref().child('user');
 
 // ===== CLICK HANDLER FOR THE SEARCH BUTTON =====
 $("#searchButton").on("click", function (event) {
-
+    event.preventDefault();
+    
     // ===== Retrieving data from the user's requests =====
     var startPlace = $('#startPlace').val().trim();
     var destination = $("#destination").val().trim();
