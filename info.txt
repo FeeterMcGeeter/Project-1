@@ -1,0 +1,2 @@
+Zomato API Key: fee4a18f3c4f28a7c1124fbfb053b3b2;
+url: "https://developers.zomato.com/api/v2.1/search?q=restaurants&count=5&sort=rating&order=desc"
