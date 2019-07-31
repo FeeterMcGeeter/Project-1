@@ -39,3 +39,19 @@
 #day4 {
     border-right: none;
 }
+
+
+
+
+
+/* ===== FAVORITES PAGE =====  */
+.favorites-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.favorites {
+    margin-right: 40px;
+    outline: none;
+}
