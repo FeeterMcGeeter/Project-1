@@ -14,4 +14,18 @@ firebase.initializeApp(firebaseConfig);
 // ===== Variable for database reference =====
 var database = firebase.database();
 
+// ===== Variable of key for user pulled from localStorage =====
+var id = '';
+id = localStorage.user
 
+// ==== Variable database ref object to the child userSearch ====
+var dbUser = database.ref().child('user').child(id);
+
+// ==== Variable for AJAX calls from index.html ====
+
+var destination = '';
+var startDate = '';
+var endDate = '';
+var startPlace = '';
+
+console.log(id);
