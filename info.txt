@@ -1,2 +1,38 @@
 Zomato API Key: fee4a18f3c4f28a7c1124fbfb053b3b2;
 url: "https://developers.zomato.com/api/v2.1/search?q=restaurants&count=5&sort=rating&order=desc"
+
+booking
+$.ajax({
+      url:
+        "https://apidojo-booking-v1.p.rapidapi.com/properties/list",
+      headers: {
+        ["X-RapidAPI-Key"]: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
+      },
+      data: {
+        price_filter_currencycode: "USD",
+        order_by: "popularity",
+        languagecode: "en-us",
+        search_type: "city",
+        offset: 0,
+        dest_ids: "-666610",
+        guest_qty: "1",
+        arrival_date: "2019-12-13",
+        departure_date: "2019-12-15",
+        room_qty: "1"
+      }
+    }).then(function (response) {
+      console.log(response);
+    });
+
+
+
+sky scanner
+$.ajax({
+  url:
+    "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/DFW-sky/JFK-sky/2019-09-01",
+  headers: {
+    ["X-RapidAPI-Key"]: "BOXzs1vj5WmshRDJPtLTBXerwQ0Pp1uVo2ljsn1uSUqqITboyp"
+  }
+}).then(function(response) {
+  console.log(response);
+});
