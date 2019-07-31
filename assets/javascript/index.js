@@ -58,10 +58,10 @@ $("#searchButton").on("click", function (event) {
     $.ajax({
         url: weatherURL,
         method: "GET"
-    }).then(function (weatherData) {
-        var hoursArray = weatherData.list;
-        var dailyWeather = hoursArray.filter(function (value) {
-            var dtTxt = value.dt_txt;
+    }).then(function (weatherInfo) {
+        var listOfWeatherDataEveryThreeHours = weatherInfo.list;
+        var listOfDailyWeatherData = listOfWeatherDataEveryThreeHours.filter(function (weatherDataEveryThreeHours) {
+            var dtTxt = weatherDataEveryThreeHours.dt_txt;
             var timeIndex = dtTxt.indexOf("12:00:00");
 
             if (timeIndex === -1) {
@@ -69,19 +69,26 @@ $("#searchButton").on("click", function (event) {
             } else {
                 return true;
             }
-            // ===== APPENDING THE DATA TO THE WEATHER CARD ===== 
-            var weatherDivOne = $("<div class='day-one");
-            var descriptionElement = $("<p>").text(dailyWeather[0].weather[0].description);
-            var dayElement = $("<p>").text(dailyWeather[0].dt_txt);
+ 
+        })
+           // ===== APPENDING THE DATA TO THE WEATHER CARD ===== 
+            // var weatherDivOne = $("<div class='day-one");
+            // dailyWeatherData[0].weather[0].description);
+            // console.log(dailyWeather[0].weather[0].description)
+            // var dayElement = $("<p>").text(dailyWeather[0].dt_txt);
 
-            weatherDivOne.append($("<p>").text(dailyWeather[0].main.temp));
+            // weatherDivOne.append($("<p>").text(dailyWeather[0].main.temp));
 
-            $("#day1").append(weatherDivOne);
+            // $("#day1").append(weatherDivOne);
             // weatherDiv.append(tempElement);
             // weatherDiv.append(iconElement);
-            // weatherDiv.append(dayElement);
+            // weatherDiv.append(dayElement);        
+        listOfDailyWeatherData.forEach(function(dailyWeatherData, i) {
+            console.log(dailyWeatherData, i);
+
+            
+
         })
-        console.log(dailyWeather);
     })
 
     // ===== VARIABLE FOR ZOMATO API URL =====
