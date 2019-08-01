@@ -64,14 +64,14 @@ dbUser.on('value', function (snapshot) {
             } else {
                 return true;
             }
- 
+
         })
-        listOfDailyWeatherData.forEach(function(dailyWeatherData, i) {
+        listOfDailyWeatherData.forEach(function (dailyWeatherData, i) {
             console.log(dailyWeatherData);
 
             var weatherContainer = $("#weather-data");
             var weatherDiv = $("<div class='forecast-card'>");
-            weatherDiv.attr("id", "day-" + i+1);
+            weatherDiv.attr("id", "day-" + i + 1);
 
             // ===== Parsing the data to an integer and rounding up or down ===== 
             var temperatureData = dailyWeatherData.main.temp;
@@ -81,7 +81,7 @@ dbUser.on('value', function (snapshot) {
             // ===== Formatting the date using Moment.js =====
             var dateData = dailyWeatherData.dt_txt;
             var dateFormat = moment(dateData).format("ddd");
-            
+
             var temperatureDisplay = $("<h4>").text(temperatureRound);
             var descriptionDisplay = $("<p>").text(dailyWeatherData.weather[0].description);
             var dateDisplay = $("<h5>").text(dateFormat);
@@ -96,48 +96,89 @@ dbUser.on('value', function (snapshot) {
         })
     })
 
-        // ======= Booking required Variables
+    // ======= Booking required Variables
 
-        var startDateFix = moment(startDate).format('YYYY-MM-DD')
-        var endDateFix = moment(endDate).format('YYYY-MM-DD')
-    
-        //console.log(startDateFix);
-        //console.log(endDateFix);
-        //
-        // ======= Booking AJAX call ========
-        //$.ajax({
-        //   url: "https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete",
-        //   headers: { ['X-RapidAPI-Key']: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43" },
-        //   data: {
-        //       languagecode: 'en-us',
-        //       text: destination
-        //   }
-        //})
-        //.then(function (cityCode) {
-        //   var destID= cityCode[0].dest_id
-        //
-        //    return $.ajax({
-        //        url:
-        //            "https://apidojo-booking-v1.p.rapidapi.com/properties/list",
-        //        headers: {
-        //            ["X-RapidAPI-Key"]: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
-        //        },
-        //        data: {
-        //            price_filter_currencycode: "USD",
-        //            order_by: "popularity",
-        //            languagecode: "en-us",
-        //            search_type: "city",
-        //            offset: 0,
-        //            dest_ids: destID,
-        //            guest_qty: "1",
-        //            arrival_date: startDateFix,
-        //            departure_date: endDateFix,
-        //            room_qty: "1"
-        //        }
-        //    })
-        //})
-        //.then(function(hotelBookings) {
-        //    console.log(hotelBookings)
-        //})
+    var startDateFix = moment(startDate).format('YYYY-MM-DD')
+    var endDateFix = moment(endDate).format('YYYY-MM-DD')
 
+    //console.log(startDateFix);
+    //console.log(endDateFix);
+    //
+    // ======= Booking AJAX call ========
+    //$.ajax({
+    //   url: "https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete",
+    //   headers: { ['X-RapidAPI-Key']: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43" },
+    //   data: {
+    //       languagecode: 'en-us',
+    //       text: destination
+    //   }
+    //})
+    //.then(function (cityCode) {
+    //   var destID= cityCode[0].dest_id
+    //
+    //    return $.ajax({
+    //        url:
+    //            "https://apidojo-booking-v1.p.rapidapi.com/properties/list",
+    //        headers: {
+    //            ["X-RapidAPI-Key"]: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
+    //        },
+    //        data: {
+    //            price_filter_currencycode: "USD",
+    //            order_by: "popularity",
+    //            languagecode: "en-us",
+    //            search_type: "city",
+    //            offset: 0,
+    //            dest_ids: destID,
+    //            guest_qty: "1",
+    //            arrival_date: startDateFix,
+    //            departure_date: endDateFix,
+    //            room_qty: "1"
+    //        }
+    //    })
+    //})
+    //.then(function(hotelBookings) {
+    //    console.log(hotelBookings)
+    //})
+
+
+    function getPlaceId(query) {
+        return $.ajax({
+            url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/',
+            headers: {
+                "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+                "x-rapidapi-key": "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
+            },
+            data: {
+                query
+            }
+
+        }).then(function (response) {
+            return response.Places[0].PlaceId
+        })
+
+    }
+
+    getPlaceId(destination)
+        .then(function (destinationPlaceId) {
+            return getPlaceId(startPlace)
+                .then(function (startPlaceId) {
+                    return {
+                        destinationPlaceId,
+                        startPlaceId
+                    }
+                })
+        })
+        .then(function (data) {
+            console.log(data)
+            var skyURL = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/' + data.startPlaceId + '/' + data.destinationPlaceId + '/' + startDateFix
+            $.ajax({
+                url: skyURL,
+                headers: {
+                    "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+                    "x-rapidapi-key": "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
+                }
+            }).then(function (response) {
+                console.log(response)
+            })
+        });
 })
