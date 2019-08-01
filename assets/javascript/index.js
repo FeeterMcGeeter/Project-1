@@ -49,51 +49,6 @@ $("#searchButton").on("click", function (event) {
     })
     localStorage.setItem('user', id)
     
-    // ==== VARIABLES FOR OPENWEATHER API =====
-    var weatherAPIKey = "3703659783afa99dd31d2449ec636a6c";
-    var city = $("#destination").val();
-    var weatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${weatherAPIKey}`;
-
-    // ===== AJAX CALL TO OPENWEATHER =====
-    $.ajax({
-        url: weatherURL,
-        method: "GET"
-    }).then(function (weatherInfo) {
-        var listOfWeatherDataEveryThreeHours = weatherInfo.list;
-        var listOfDailyWeatherData = listOfWeatherDataEveryThreeHours.filter(function (weatherDataEveryThreeHours) {
-            var dtTxt = weatherDataEveryThreeHours.dt_txt;
-            var timeIndex = dtTxt.indexOf("12:00:00");
-
-            if (timeIndex === -1) {
-                return false;
-            } else {
-                return true;
-            }
- 
-        })
-           // ===== APPENDING THE DATA TO THE WEATHER CARD ===== 
-            // var weatherDivOne = $("<div class='day-one");
-            // dailyWeatherData[0].weather[0].description);
-            // console.log(dailyWeather[0].weather[0].description)
-            // var dayElement = $("<p>").text(dailyWeather[0].dt_txt);
-
-            // weatherDivOne.append($("<p>").text(dailyWeather[0].main.temp));
-
-            // $("#day1").append(weatherDivOne);
-            // weatherDiv.append(tempElement);
-            // weatherDiv.append(iconElement);
-            // weatherDiv.append(dayElement);        
-        listOfDailyWeatherData.forEach(function(dailyWeatherData) {
-            console.log(dailyWeatherData);
-
-            var weatherDiv = $("<div class='forecast-card'>");
-            var tempData = $("<p>").text(dailyWeatherData.main.temp);
-            var descriptionData = dailyWeatherData.weather[0].description;
-            // var descriptionData = $("<p>").text(dailyWeatherData.weather.description);
-            console.log(tempData);
-            console.log(descriptionData);
-        })
-    })
 
     // ===== VARIABLE FOR ZOMATO API URL =====
     var foodAPIKey = "fee4a18f3c4f28a7c1124fbfb053b3b2";
