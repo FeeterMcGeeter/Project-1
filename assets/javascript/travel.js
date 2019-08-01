@@ -66,18 +66,33 @@ dbUser.on('value', function (snapshot) {
             }
  
         })
-     
         listOfDailyWeatherData.forEach(function(dailyWeatherData, i) {
             console.log(dailyWeatherData);
 
             var weatherContainer = $("#weather-data");
             var weatherDiv = $("<div class='forecast-card'>");
             weatherDiv.attr("id", "day-" + i+1);
-            var temperatureData = $("<p>").text(dailyWeatherData.main.temp);
-            var descriptionData = $("<p>").text(dailyWeatherData.weather[0].description);
-            var dateData = $("<p>").text(dailyWeatherData.dt_txt);
-            weatherDiv.append(temperatureData, descriptionData, dateData);
+
+            // ===== Parsing the data to an integer and rounding up or down ===== 
+            var temperatureData = dailyWeatherData.main.temp;
+            var temperatureParse = parseInt(temperatureData);
+            var temperatureRound = Math.round(temperatureParse);
+
+            // ===== Formatting the date using Moment.js =====
+            var dateData = dailyWeatherData.dt_txt;
+            var dateFormat = moment(dateData).format("ddd");
+            
+            var temperatureDisplay = $("<h4>").text(temperatureRound);
+            var descriptionDisplay = $("<p>").text(dailyWeatherData.weather[0].description);
+            var dateDisplay = $("<h5>").text(dateFormat);
+
+            // ===== Appending the data to html ===== 
+            weatherDiv.append(temperatureDisplay, descriptionDisplay, dateDisplay);
             weatherContainer.append(weatherDiv);
+
+            temperatureDisplay.addClass("weather-temp");
+            descriptionDisplay.addClass("weather-description");
+            dateDisplay.addClass("weather-date");
         })
     })
 
