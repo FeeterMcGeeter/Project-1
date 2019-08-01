@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Project-1</title>
     <meta charset="UTF-8">
@@ -11,8 +12,8 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <!-- ===== MAIN NAVIGATION BAR =====  -->
     <!-- ===== MAIN NAVIGATION BAR =====  -->
     <div class="wrapper mb-3">
         <div class="container-fluid bg-primary p-0">
@@ -21,7 +22,7 @@
                     <img src="./assets/images/logo.png" width="50" height="50" class="d-inline-block align-top"
                         alt="logo">
                 </a>
-    
+
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href="./index.html">Home</a>
@@ -33,7 +34,7 @@
             </nav>
         </div>
     </div>
-    
+
     <!-- ===== CONTAINER FOR USER REQUESTED HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
     <div class="container d-flex justify-content-center mb-3">
         <button type="button" class="btn btn-light">Flights</button>
@@ -41,61 +42,40 @@
         <button type="button" class="btn btn-light">Food</button>
     </div>
 
-     <!-- ===== CONTAINER FOR DATA OUTPUT HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
-     <div class="container">
-        <div class="row p-3">
-            <div class="card col-md-12">
-                <div class="card-header">
-                    <h3>Flight/Hotel/Food Information</h3>
-                </div>
     <!-- ===== WEATHER FORECAST FOR CITY REQUESTED ===== -->
-    <div class="container">
-    
-        <div class="row" style="width: 20rem; height: 200px">
-            <div class="forecast-card" id="day1">
+    <div class="container"> 
+        <div class="row" id="weather-data" style="width: 20rem; height: 200px">
                 
-            </div>
-            <div class="forecast-card" id="day2">
-                
-                </div>
-                <div class="forecast-card" id="day4">
-
-                </div>
-                <div class="forecast-card" id="day5">
-
-                </div>
-            </div>
         </div>
     </div>
-    
-    
+        
+    <!-- ===== CONTAINER FOR DATA OUTPUT HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
+
+
 
 
 
     <!-- ===== JQUERY CDN ===== -->
-    <script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+        </script>
     <!-- ===== POPPER.JS CDN ===== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous">
-    </script>
+        </script>
     <!-- ===== BOOTSTRAP/JS CDN ===== -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous">
-    </script>
+        </script>
     <!-- ===== FIREBASE CDNs ===== -->
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
     <!-- ===== MOMENT CDN =====  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="assets/javascript/index.js"></script>
     <script src="assets/javascript/travel.js"></script>
-    <script src="assets/javascript/favorites.js"></script>
-    
+
 </body>
+
 </html>

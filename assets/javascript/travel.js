@@ -46,17 +46,17 @@ dbUser.on('value', function (snapshot) {
 
     // ==== VARIABLES FOR OPENWEATHER API =====
     var weatherAPIKey = "3703659783afa99dd31d2449ec636a6c";
-    var city = destination;
-    var weatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${weatherAPIKey}`;
+
+    var weatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${destination}&units=imperial&appid=${weatherAPIKey}`;
 
     // ===== AJAX CALL TO OPENWEATHER =====
     $.ajax({
         url: weatherURL,
         method: "GET"
-    }).then(function (weatherData) {
-        var hoursArray = weatherData.list;
-        var dailyWeather = hoursArray.filter(function (value) {
-            var dtTxt = value.dt_txt;
+    }).then(function (weatherInfo) {
+        var listOfWeatherDataEveryThreeHours = weatherInfo.list;
+        var listOfDailyWeatherData = listOfWeatherDataEveryThreeHours.filter(function (weatherDataEveryThreeHours) {
+            var dtTxt = weatherDataEveryThreeHours.dt_txt;
             var timeIndex = dtTxt.indexOf("12:00:00");
 
             if (timeIndex === -1) {
@@ -64,19 +64,21 @@ dbUser.on('value', function (snapshot) {
             } else {
                 return true;
             }
-            // ===== APPENDING THE DATA TO THE WEATHER CARD ===== 
-            var weatherDivOne = $("<div class='day-one");
-            var descriptionElement = $("<p>").text(dailyWeather[0].weather[0].description);
-            var dayElement = $("<p>").text(dailyWeather[0].dt_txt);
-
-            weatherDivOne.append($("<p>").text(dailyWeather[0].main.temp));
-
-            $("#day1").append(weatherDivOne);
-            // weatherDiv.append(tempElement);
-            // weatherDiv.append(iconElement);
-            // weatherDiv.append(dayElement);
+ 
         })
-        console.log(dailyWeather);
+     
+        listOfDailyWeatherData.forEach(function(dailyWeatherData, i) {
+            console.log(dailyWeatherData);
+
+            var weatherContainer = $("#weather-data");
+            var weatherDiv = $("<div class='forecast-card'>");
+            weatherDiv.attr("id", "day-" + i+1);
+            var temperatureData = $("<p>").text(dailyWeatherData.main.temp);
+            var descriptionData = $("<p>").text(dailyWeatherData.weather[0].description);
+            var dateData = $("<p>").text(dailyWeatherData.dt_txt);
+            weatherDiv.append(temperatureData, descriptionData, dateData);
+            weatherContainer.append(weatherDiv);
+        })
     })
 
         // ======= Booking required Variables
