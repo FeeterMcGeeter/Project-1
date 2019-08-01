@@ -83,11 +83,15 @@ $("#searchButton").on("click", function (event) {
             // weatherDiv.append(tempElement);
             // weatherDiv.append(iconElement);
             // weatherDiv.append(dayElement);        
-        listOfDailyWeatherData.forEach(function(dailyWeatherData, i) {
-            console.log(dailyWeatherData, i);
+        listOfDailyWeatherData.forEach(function(dailyWeatherData) {
+            console.log(dailyWeatherData);
 
-            
-
+            var weatherDiv = $("<div class='forecast-card'>");
+            var tempData = $("<p>").text(dailyWeatherData.main.temp);
+            var descriptionData = dailyWeatherData.weather[0].description;
+            // var descriptionData = $("<p>").text(dailyWeatherData.weather.description);
+            console.log(tempData);
+            console.log(descriptionData);
         })
     })
 
