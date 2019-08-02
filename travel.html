@@ -15,8 +15,8 @@
 
 <body>
     <!-- ===== MAIN NAVIGATION BAR =====  -->
-    <div class="wrapper mb-3">
-        <div class="container-fluid bg-primary p-0">
+    <div class="wrapper">
+        <div class="container-fluid bg-primary mb-2 p-0" id="global-header">
             <nav class="navbar navbar-expand-lg navbar-light bg-primary">
                 <a class="navbar-brand" href="./index.html">
                     <img src="./assets/images/hangrylogo.png" width="75" height="75" class="d-inline-block align-top"
@@ -33,25 +33,30 @@
                 </div>
             </nav>
         </div>
-    </div>
 
-    <!-- ===== CONTAINER FOR USER REQUESTED HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
-    <div class="container d-flex justify-content-center mb-3">
-        <button type="button" class="btn btn-light mr-3">Flights</button>
-        <button type="button" class="btn btn-light mr-3">Hotels</button>
-        <button type="button" class="btn btn-light">Food</button>
-    </div>
+        <!-- ===== CONTAINER FOR USER REQUESTED HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
+        <div class="container d-flex justify-content-center mb-3">
+            <button type="button" class="btn btn-light mr-3">Flights</button>
+            <button type="button" class="btn btn-light mr-3">Hotels</button>
+            <button type="button" class="btn btn-light">Food</button>
+        </div>
 
-    <!-- ===== WEATHER FORECAST FOR CITY REQUESTED ===== -->
-    <div class="row" id="weather-data">
+        <!-- ===== WEATHER FORECAST FOR CITY REQUESTED ===== -->
+        <div class="row d-flex justify-content-end" id="weather-data">
+                
+        </div>
             
+        <!-- ===== CONTAINER FOR DATA OUTPUT HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
+
     </div>
-        
-    <!-- ===== CONTAINER FOR DATA OUTPUT HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
 
 
-
-
+    <!-- ===== FOOTER ===== -->
+    <div class="container-fluid global-footer">
+        <footer class="footer">
+            <p>Copyright &copy;</p>
+        </footer>
+    </div>
 
     <!-- ===== JQUERY CDN ===== -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
