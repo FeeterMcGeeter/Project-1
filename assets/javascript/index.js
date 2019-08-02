@@ -23,7 +23,7 @@ var dbUser = database.ref().child('user');
 // ===== CLICK HANDLER FOR THE SEARCH BUTTON =====
 $("#searchButton").on("click", function (event) {
     event.preventDefault();
-    
+
     // ===== Retrieving data from the user's requests =====
     var startPlace = $('#startPlace').val().trim();
     var destination = $("#destination").val().trim();
@@ -48,7 +48,7 @@ $("#searchButton").on("click", function (event) {
         id = snapshot.key
     })
     localStorage.setItem('user', id)
-    
+
     // ==== VARIABLES FOR OPENWEATHER API =====
     var weatherAPIKey = "3703659783afa99dd31d2449ec636a6c";
     var city = $("#destination").val();
@@ -85,8 +85,8 @@ $("#searchButton").on("click", function (event) {
     })
 
     // ===== VARIABLE FOR ZOMATO API URL =====
-    var foodAPIKey = "fee4a18f3c4f28a7c1124fbfb053b3b2";
-    var foodURL = `https://developers.zomato.com/api/v2.1/search?entity_type=city&q=${city}&count=5&sort=rating&order=desc&apikey=${foodAPIKey}`;
+    var foodAPIKey = "c493267fcaf15186d28434182e181ee9";
+    var foodURL = `https://developers.zomato.com/api/v2.1/restaurant?res_id=16774318`;
 
     // ===== AJAX CALL TO ZOMATO ===== 
     $.ajax({
@@ -97,4 +97,5 @@ $("#searchButton").on("click", function (event) {
 
     })
 
-})
+});
+
