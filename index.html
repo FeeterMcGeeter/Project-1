@@ -10,13 +10,15 @@
     <!-- ===== BOOTSTRAP CDN ===== -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- ===== ANIMATE.CSS CDN ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
     <!-- ===== MAIN NAVIGATION BAR =====  -->
-    <div class="wrapper mb-3">
-        <div class="container-fluid bg-primary p-0">
+    <div class="wrapper">
+        <div class="container-fluid animated slideInDown bg-primary mb-5 p-0" id="global-header">
             <nav class="navbar navbar-expand-lg navbar-light bg-primary">
                 <a class="navbar-brand" href="./index.html">
                     <img src="./assets/images/hangrylogo.png" width="75" height="75" class="d-inline-block align-top"
@@ -33,15 +35,14 @@
                 </div>
             </nav>
         </div>
-    </div>
 
-    <!-- ===== CONTAINER FORM FOR USER REQUESTS ===== -->
-    <div class="container mb-3">
-        <div class="row d-flex justify-content-center p-3">
-            <div class="card col-md-8">
-                <div class="card-header">
-                    <h3>Let Us Find Your Destination!</h3>
+        <!-- ===== CONTAINER FORM FOR USER REQUESTS ===== -->
+        <div class="row d-flex justify-content-center mb-5 p-3 animated fadeIn" id="main-content-container">
+            <div class="card col-md-8 my-3 animated zoomIn delay-2s" id="main-form">
+                <div class="d-flex justify-content-center main-form-header py-2">
+                    <h2>Let Us Find Your Destination!</h2>
                 </div>
+                <hr>
 
                 <div class="card-body">
                     <div id="info">
@@ -71,8 +72,16 @@
                 </div>
             </div>
         </div>
+        <!-- ===== PUSHES THE FOOTER DOWN ===== -->
+        <div class="push"></div>
     </div>
 
+    <!-- ===== FOOTER ===== -->
+    <div class="container-fluid global-footer animated slideInUp">
+        <footer class="footer">
+            <p>Copyright &copy;</p>
+        </footer>
+    </div>
 
     <!-- ===== JQUERY CDN ===== -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
