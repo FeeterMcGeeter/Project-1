@@ -49,6 +49,7 @@ $("#searchButton").on("click", function (event) {
     })
     localStorage.setItem('user', id)
 
+
     // ==== VARIABLES FOR OPENWEATHER API =====
     var weatherAPIKey = "3703659783afa99dd31d2449ec636a6c";
     var city = $("#destination").val();
@@ -83,6 +84,8 @@ $("#searchButton").on("click", function (event) {
         })
         console.log(dailyWeather);
     })
+    
+
 
     // ===== VARIABLE FOR ZOMATO API URL =====
     var foodAPIKey = "c493267fcaf15186d28434182e181ee9";
