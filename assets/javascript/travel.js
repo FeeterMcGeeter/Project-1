@@ -158,7 +158,8 @@ dbUser.on('value', function (snapshot) {
 
     }
 
-    getPlaceId(destination)
+    $('#flightbtn').on('click', function () {
+        getPlaceId(destination)
         .then(function (destinationPlaceId) {
             return getPlaceId(startPlace)
                 .then(function (startPlaceId) {
@@ -178,7 +179,9 @@ dbUser.on('value', function (snapshot) {
                     "x-rapidapi-key": "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
                 }
             }).then(function (response) {
-                console.log(response)
+
             })
         });
+       
+    });
 })
