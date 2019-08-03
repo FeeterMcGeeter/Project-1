@@ -107,6 +107,7 @@ dbUser.on('value', function (snapshot) {
     //
     // ======= Booking AJAX call ========
     $("#hotelbtn").on("click", function () {
+        $('#infoBox').empty();
         $.ajax({
             url: "https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete",
             headers: { ['X-RapidAPI-Key']: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43" },
@@ -163,6 +164,7 @@ dbUser.on('value', function (snapshot) {
     }
 
     $('#flightbtn').on('click', function () {
+        $('#infoBox').empty();
         getPlaceId(destination)
             .then(function (destinationPlaceId) {
                 return getPlaceId(startPlace)
@@ -202,7 +204,7 @@ dbUser.on('value', function (snapshot) {
 
                     $('#foodbtn').on('click', function () {
                         // maybe .empty of infoBox here
-
+                        $('#infoBox').empty();
                         $.ajax({
                             url: 'https://developers.zomato.com/api/v2.1/locations',
                             method: "GET",
