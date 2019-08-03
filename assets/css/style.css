@@ -2,7 +2,19 @@
     box-sizing: border-box;
 }
 
+body {
+    background: #DCDCDC;
+}
+
+.wrapper {
+    min-height: 100vh;
+    margin-bottom: -75px;
+}
+
 /* ========== GLOBAL NAVBAR ========== */
+#global-header {
+    border-bottom: 5px solid #FFA500;
+}
 .navbar {
     width: 960px;
     margin: 0 auto;
@@ -14,11 +26,44 @@
 }
 
 /* ========== MAIN PAGE ========== */
+#main-content-container {
+    background: url(../images/mainbackground.jpeg) no-repeat center center fixed;
+    background-size: cover;
+}
 
+#main-form {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    background-color: transparent;
+}
 
+#main-form::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    opacity: 0.6;
+}
 
+hr {
+    margin: 0;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.25));
+}
 
+#main-form label {
+    color: #fff;
+}
 
+.push {
+    height: 75px;
+}
 
 /* ========== TRAVEL.HTML PAGE ========== */
 
@@ -27,11 +72,36 @@
 
 
 /* ===== OPENWEATHER CONTAINER ===== */
+#weather-data {
+    width: 30%;
+    margin: 0 0 0 20px;
+    -webkit-box-shadow: 0px 5px 5px 1px #000000; 
+    box-shadow: 0px 5px 5px 1px #000000;
+}
+
 .forecast-card {
     width: 20%;
-    height: 100px;
+    height: 150px;
+    /* padding-top: 10px; */
     border: 1px solid #000;
     text-align: center;
+    background: #007BFF;
+    background: -moz-linear-gradient(top, #007BFF 0%, #FFA500 50%, #007BFF 100%);
+    background: -webkit-linear-gradient(top, #007BFF 0%, #FFA500 50%, #007BFF 100%);
+    background: linear-gradient(to bottom, #007BFF 0%, #FFA500 50%, #007BFF 100%);
+}
+
+.weather-temp {
+    height: 33%;
+}
+
+.weather-description {
+    height: 33%;
+    font-size: 14px;
+}
+
+.weather-date {
+    height: 33%;
 }
 
 #day-01,
@@ -51,4 +121,15 @@
 .favorites {
     margin-right: 40px;
     outline: none;
+}
+
+/* ===== GLOBAL FOOTER ====== */
+.global-footer {
+    width: 100%;
+    height: 75px;
+    margin: 0;
+    color: #fff;
+    background: #007BFF;
+    border-top: 5px solid #FFA500;
+    text-align: center;
 }

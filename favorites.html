@@ -14,11 +14,11 @@
 
 <body>
     <!-- ===== MAIN NAVIGATION BAR =====  -->
-    <div class="wrapper mb-3">
-        <div class="container-fluid bg-primary p-0">
+    <div class="wrapper">
+        <div class="container-fluid bg-primary mb-5 p-0" id="global-header">
             <nav class="navbar navbar-expand-lg navbar-light bg-primary">
                 <a class="navbar-brand" href="./index.html">
-                    <img src="./assets/images/logo.png" width="50" height="50" class="d-inline-block align-top"
+                    <img src="./assets/images/hangrylogo.png" width="75" height="75" class="d-inline-block align-top"
                         alt="logo">
                 </a>
 
@@ -32,26 +32,33 @@
                 </div>
             </nav>
         </div>
+
+        <!-- ===== DROPDOWN MENUS FOR THE FAVORITED AND PREVIOUSLY SEARCHED BUTTONS ===== -->
+        <div class="row favorites-row">
+            <div class="btn-group">
+                <button class="btn btn-secondary btn-lg dropdown-toggle favorites" type="button" data-toggle="dropdown" aria-haspopup="true"           aria-expanded="false">Favorites
+                </button>
+                <div class="dropdown-menu">...</div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-secondary btn-lg dropdown-toggle favorites" type="button" data-toggle="dropdown" aria-haspopup="true"            aria-expanded="false">Recent Searches
+                </button>
+                <div class="dropdown-menu">...</div>
+            </div>
+        </div>
+        <!-- ===== PUSHES THE FOOTER DOWN ===== -->
+        <div class="push"></div>
     </div>
 
-    <!-- ===== DROPDOWN MENUS FOR THE FAVORITED AND PREVIOUSLY SEARCHED BUTTONS ===== -->
-    <div class="row favorites-row">
-        <div class="btn-group">
-            <button class="btn btn-secondary btn-lg dropdown-toggle favorites" type="button" data-toggle="dropdown" aria-haspopup="true"           aria-expanded="false">Favorites
-            </button>
-            <div class="dropdown-menu">...</div>
-        </div>
 
-        <div class="btn-group">
-            <button class="btn btn-secondary btn-lg dropdown-toggle favorites" type="button" data-toggle="dropdown" aria-haspopup="true"            aria-expanded="false">Recent Searches
-            </button>
-            <div class="dropdown-menu">...</div>
-        </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="container-fluid global-footer">
+        <footer class="footer">
+            <p>Copyright &copy;</p>
+        </footer>
     </div>
-
-
-
-
 
     <!-- ===== JQUERY CDN ===== -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"

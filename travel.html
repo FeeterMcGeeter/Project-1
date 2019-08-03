@@ -15,8 +15,8 @@
 
 <body>
     <!-- ===== MAIN NAVIGATION BAR =====  -->
-    <div class="wrapper mb-3">
-        <div class="container-fluid bg-primary p-0">
+    <div class="wrapper">
+        <div class="container-fluid bg-primary mb-2 p-0" id="global-header">
             <nav class="navbar navbar-expand-lg navbar-light bg-primary">
                 <a class="navbar-brand" href="./index.html">
                     <img src="./assets/images/hangrylogo.png" width="75" height="75" class="d-inline-block align-top"
@@ -33,25 +33,34 @@
                 </div>
             </nav>
         </div>
+
+        <!-- ===== CONTAINER FOR USER REQUESTED HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
+        <div class="container d-flex justify-content-center mb-3">
+            <button type="button" class="btn btn-light mr-3" id="flightbtn">Flights</button>
+            <button type="button" class="btn btn-light mr-3" id="hotelbtn">Hotels</button>
+            <button type="button" class="btn btn-light" id="foodbtn">Food</button>
+        </div>
+
+        <!-- ===== WEATHER FORECAST FOR CITY REQUESTED ===== -->
+        <div class="row d-flex justify-content-end" id="weather-data">
+
+        </div>
+
+        <!-- ===== CONTAINER FOR DATA OUTPUT HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
+
+        <div class="row" id="infoBox">
+
+        </div>
+
     </div>
 
-    <!-- ===== CONTAINER FOR USER REQUESTED HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
-    <div class="container d-flex justify-content-center mb-3">
-        <button type="button" class="btn btn-light mr-3">Flights</button>
-        <button type="button" class="btn btn-light mr-3">Hotels</button>
-        <button type="button" class="btn btn-light">Food</button>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="container-fluid global-footer">
+        <footer class="footer">
+            <p>Copyright &copy;</p>
+        </footer>
     </div>
-
-    <!-- ===== WEATHER FORECAST FOR CITY REQUESTED ===== -->
-    <div class="row" id="weather-data">
-            
-    </div>
-        
-    <!-- ===== CONTAINER FOR DATA OUTPUT HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
-
-
-
-
 
     <!-- ===== JQUERY CDN ===== -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -59,13 +68,11 @@
         </script>
     <!-- ===== POPPER.JS CDN ===== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous">
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
         </script>
     <!-- ===== BOOTSTRAP/JS CDN ===== -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous">
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
     <!-- ===== FIREBASE CDNs ===== -->
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>

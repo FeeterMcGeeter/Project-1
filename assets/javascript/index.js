@@ -85,20 +85,5 @@ $("#searchButton").on("click", function (event) {
         console.log(dailyWeather);
     })
     
-
-
-    // ===== VARIABLE FOR ZOMATO API URL =====
-    var foodAPIKey = "c493267fcaf15186d28434182e181ee9";
-    var foodURL = `https://developers.zomato.com/api/v2.1/restaurant?res_id=16774318`;
-
-    // ===== AJAX CALL TO ZOMATO ===== 
-    $.ajax({
-        url: foodURL,
-        method: "GET"
-    }).then(function (foodData) {
-        console.log(foodData);
-
-    })
-
 });
 
