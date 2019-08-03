@@ -30,11 +30,6 @@ $("#searchButton").on("click", function (event) {
     var startDate = $("#start").val().trim();
     var endDate = $("#end").val().trim();
 
-    console.log(startPlace);
-    console.log(destination);
-    console.log(startDate);
-    console.log(endDate);
-
     // ===== Pushing the data to Firebase =====
     dbUser.push({
         startPlace: startPlace,
@@ -49,7 +44,11 @@ $("#searchButton").on("click", function (event) {
     })
     localStorage.setItem('user', id)
 
-
-    
+    if (startPlace !== "" && destination !== "" 
+        && startDate !== "" && endDate !== "") {
+            window.location.replace('./travel.html')
+        } else {
+            console.log('error')
+        }
 });
 
