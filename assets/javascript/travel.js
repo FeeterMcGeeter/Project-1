@@ -67,7 +67,7 @@ dbUser.on('value', function (snapshot) {
 
         })
         listOfDailyWeatherData.forEach(function (dailyWeatherData, i) {
-            console.log(dailyWeatherData);
+            //console.log(dailyWeatherData);
 
             var weatherContainer = $("#weather-data");
             var weatherDiv = $("<div class='forecast-card'>");
@@ -179,6 +179,42 @@ dbUser.on('value', function (snapshot) {
                     "x-rapidapi-key": "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
                 }
             }).then(function (response) {
+                console.log(response)
+                var quoteID = response.Quotes[0].OutboundLeg.CarrierIds[0];
+                var airline = ''
+                response.Carriers.forEach(function(carrier){
+
+                    var carrierId = carrier.CarrierId
+                    
+                    if (quoteID === carrierId){
+                        return airline = carrier.Name
+                    }
+
+                })
+
+                console.log(airline)
+
+
+
+                var minPrice= response.Quotes[0].MinPrice
+                var flightDiv = $('<div>');
+                var carrier = $('<h1>')
+                var flightCost = $('<p>');
+                
+                carrier.text(airline);
+                carrier.appendTo(flightDiv);
+
+                flightCost.text('$'+ minPrice);
+                flightCost.appendTo(flightDiv);
+
+                flightDiv.addClass('card');
+                flightDiv.addClass('col-lg-6');
+                flightDiv.addClass('flightBox');
+
+               
+
+
+                $('#infoBox').append(flightDiv);
 
             })
         });
