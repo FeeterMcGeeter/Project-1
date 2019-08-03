@@ -28,7 +28,7 @@ var startDate = '';
 var endDate = '';
 var startPlace = '';
 
-console.log(id);
+// console.log(id);
 
 //======= Firebase Snapshot and then ajax calls ========
 
@@ -170,7 +170,7 @@ dbUser.on('value', function (snapshot) {
                 })
         })
         .then(function (data) {
-            console.log(data)
+            // console.log(data)
             var skyURL = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/' + data.startPlaceId + '/' + data.destinationPlaceId + '/' + startDateFix
             $.ajax({
                 url: skyURL,
