@@ -34,6 +34,7 @@ var startPlace = '';
 
 dbUser.on('value', function (snapshot) {
     var sv = snapshot.val();
+    console.log(sv)
     destination = sv.destination;
     startDate = sv.startDate;
     endDate = sv.endDate;
@@ -188,19 +189,19 @@ dbUser.on('value', function (snapshot) {
     var foodURL = `https://developers.zomato.com/api/v2.1/locations`;
 
     // ===== AJAX CALL TO ZOMATO ===== 
-    
-    $('#foodbtn').on('click', function(){
+
+    $('#foodbtn').on('click', function () {
         // maybe .empty of infoBox here
-        
+
         $.ajax({
             url: foodURL,
             method: "GET",
-    
+
             data: {
                 apikey: "c493267fcaf15186d28434182e181ee9",
                 query: 'dallas'
             }
-    
+
         }).then(function (cityData) {
             console.log(cityData);
             var type = cityData.location_suggestions[0].entity_type;
@@ -212,36 +213,94 @@ dbUser.on('value', function (snapshot) {
                     apikey: "c493267fcaf15186d28434182e181ee9",
                     entity_id: id,
                     entity_type: type,
-    
+
                 }
             })
-    
+
         }).then(function (response) {
             // possibly make for loop 
-            var restaurant = response.best_rated_restaurant[0].restaurant.id
-            return $.ajax({
-                url: 'https://developers.zomato.com/api/v2.1/restaurant',
-                method: 'GET',
-                data: {
-                    apikey: "c493267fcaf15186d28434182e181ee9",
-                    res_id: restaurant,
-    
-    
-                }
-    
-    
-            })
-    
-        }).then(function(response){
-            // this 
+            var restaurants = response.best_rated_restaurant
+            var requests = []
+            restaurants.forEach(function (restaurant, i) {
+                console.log(i)
+                var id = restaurant.restaurant.id
 
-            console.log(response)
+                console.log(restaurant.restaurant.id)
+                var restauranRequest = $.ajax({
+                    url: 'https://developers.zomato.com/api/v2.1/restaurant',
+                    method: 'GET',
+                    data: {
+                        apikey: "c493267fcaf15186d28434182e181ee9",
+                        res_id: id,
+
+
+                    }
+
+
+                })
+                if (i < 5) {
+
+                    requests.push(restauranRequest)
+                }
+                //push ajax call to requests
+            })
+            console.log(requests)
+            return Promise.all(requests)
+
+
+        }).then(function (response) {
+            // console.log(response[3])
+
+            response.forEach(function (item) {
+                
+                var resDiv = $('<div>')
+                var resImg = $('<img>')
+                var restaurant = $('<h1>')
+                var menu = $('<a>')
+                var reviews = $('<p>')
+                var phone = $('<p>')
+
+
+                restaurant.text(item.name)
+                restaurant.appendTo(resDiv)
+
+                resImg.attr('src', item.featured_image)
+                resImg.appendTo(resDiv)
+                resImg.attr('style', 'width:200px')
+
+                menu.text('Menu')
+                menu.attr('href', item.menu_url)
+                menu.attr('target', '_blank')
+                menu.appendTo(resDiv)
+
+                reviews.text('Reviews: ' + item.all_reviews_count)
+                reviews.appendTo(resDiv)
+
+                phone.text('phone: ' + item.phone_numbers)
+                phone.appendTo(resDiv)
+
+
+                resDiv.addClass('card')
+                resDiv.addClass('col-lg-12')
+                resDiv.addClass('foodBox')
+
+                $('#infoBox').append(resDiv);
+            })
+            
+
+
+
+
+
+            console.log(response[0])
+            console.log(response[0].average_cost_for_two)
+            console.log(response[0])
         })
-    
+
     });
 
 
 
 
 
-    })
+})
