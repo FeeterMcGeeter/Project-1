@@ -48,10 +48,9 @@ $("#searchButton").on("click", function (event) {
         && startDate !== "" && endDate !== "") {
         window.location.replace('./travel.html')
     } else {
-            $(".modal").show()
-    
-            
+            $(".modal").modal('show')
 
     }
+    
 });
 
