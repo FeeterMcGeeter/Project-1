@@ -44,11 +44,14 @@ $("#searchButton").on("click", function (event) {
     })
     localStorage.setItem('user', id)
 
-    if (startPlace !== "" && destination !== "" 
+    if (startPlace !== "" && destination !== ""
         && startDate !== "" && endDate !== "") {
-            window.location.replace('./travel.html')
-        } else {
-            console.log('error')
-        }
+        window.location.replace('./travel.html')
+    } else {
+            $(".modal").show()
+    
+            
+
+    }
 });
 
