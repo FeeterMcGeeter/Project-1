@@ -28,7 +28,7 @@ var startDate = '';
 var endDate = '';
 var startPlace = '';
 
-console.log(id);
+// console.log(id);
 
 //======= Firebase Snapshot and then ajax calls ========
 
@@ -67,7 +67,7 @@ dbUser.on('value', function (snapshot) {
 
         })
         listOfDailyWeatherData.forEach(function (dailyWeatherData, i) {
-            console.log(dailyWeatherData);
+            // console.log(dailyWeatherData);
 
             var weatherContainer = $("#weather-data");
             var weatherDiv = $("<div class='forecast-card'>");
@@ -169,7 +169,7 @@ dbUser.on('value', function (snapshot) {
                 })
         })
         .then(function (data) {
-            console.log(data)
+            // console.log(data)
             var skyURL = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/' + data.startPlaceId + '/' + data.destinationPlaceId + '/' + startDateFix
             $.ajax({
                 url: skyURL,
@@ -178,7 +178,70 @@ dbUser.on('value', function (snapshot) {
                     "x-rapidapi-key": "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
                 }
             }).then(function (response) {
-                console.log(response)
+                // console.log(response)
             })
         });
-})
+
+
+    // ===== VARIABLE FOR ZOMATO API URL =====
+
+    var foodURL = `https://developers.zomato.com/api/v2.1/locations`;
+
+    // ===== AJAX CALL TO ZOMATO ===== 
+    
+    $('#foodbtn').on('click', function(){
+        // maybe .empty of infoBox here
+        
+        $.ajax({
+            url: foodURL,
+            method: "GET",
+    
+            data: {
+                apikey: "c493267fcaf15186d28434182e181ee9",
+                query: 'dallas'
+            }
+    
+        }).then(function (cityData) {
+            console.log(cityData);
+            var type = cityData.location_suggestions[0].entity_type;
+            var id = cityData.location_suggestions[0].entity_id;
+            return $.ajax({
+                url: 'https://developers.zomato.com/api/v2.1/location_details',
+                method: 'GET',
+                data: {
+                    apikey: "c493267fcaf15186d28434182e181ee9",
+                    entity_id: id,
+                    entity_type: type,
+    
+                }
+            })
+    
+        }).then(function (response) {
+            // possibly make for loop 
+            var restaurant = response.best_rated_restaurant[0].restaurant.id
+            return $.ajax({
+                url: 'https://developers.zomato.com/api/v2.1/restaurant',
+                method: 'GET',
+                data: {
+                    apikey: "c493267fcaf15186d28434182e181ee9",
+                    res_id: restaurant,
+    
+    
+                }
+    
+    
+            })
+    
+        }).then(function(response){
+            // this 
+
+            console.log(response)
+        })
+    
+    });
+
+
+
+
+
+    })
