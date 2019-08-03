@@ -68,7 +68,7 @@ dbUser.on('value', function (snapshot) {
 
         })
         listOfDailyWeatherData.forEach(function (dailyWeatherData, i) {
-            // console.log(dailyWeatherData);
+            //console.log(dailyWeatherData);
 
             var weatherContainer = $("#weather-data");
             var weatherDiv = $("<div class='forecast-card'>");
@@ -106,40 +106,43 @@ dbUser.on('value', function (snapshot) {
     //console.log(endDateFix);
     //
     // ======= Booking AJAX call ========
-    //$.ajax({
-    //   url: "https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete",
-    //   headers: { ['X-RapidAPI-Key']: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43" },
-    //   data: {
-    //       languagecode: 'en-us',
-    //       text: destination
-    //   }
-    //})
-    //.then(function (cityCode) {
-    //   var destID= cityCode[0].dest_id
-    //
-    //    return $.ajax({
-    //        url:
-    //            "https://apidojo-booking-v1.p.rapidapi.com/properties/list",
-    //        headers: {
-    //            ["X-RapidAPI-Key"]: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
-    //        },
-    //        data: {
-    //            price_filter_currencycode: "USD",
-    //            order_by: "popularity",
-    //            languagecode: "en-us",
-    //            search_type: "city",
-    //            offset: 0,
-    //            dest_ids: destID,
-    //            guest_qty: "1",
-    //            arrival_date: startDateFix,
-    //            departure_date: endDateFix,
-    //            room_qty: "1"
-    //        }
-    //    })
-    //})
-    //.then(function(hotelBookings) {
-    //    console.log(hotelBookings)
-    //})
+    $("#hotelbtn").on("click", function () {
+        $.ajax({
+            url: "https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete",
+            headers: { ['X-RapidAPI-Key']: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43" },
+            data: {
+                languagecode: 'en-us',
+                text: destination
+            }
+        })
+            .then(function (response) {
+                var destID = response[0].dest_id
+
+                return $.ajax({
+                    url:
+                        "https://apidojo-booking-v1.p.rapidapi.com/properties/list",
+                    headers: {
+                        ["X-RapidAPI-Key"]: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
+                    },
+                    data: {
+                        price_filter_currencycode: "USD",
+                        order_by: "popularity",
+                        languagecode: "en-us",
+                        search_type: "city",
+                        offset: 0,
+                        dest_ids: destID,
+                        guest_qty: "1",
+                        arrival_date: startDateFix,
+                        departure_date: endDateFix,
+                        room_qty: "1"
+                    }
+                })
+            })
+            .then(function (hotelBookings) {
+                console.log(hotelBookings)
+            })
+    })
+
 
 
     function getPlaceId(query) {
@@ -159,7 +162,8 @@ dbUser.on('value', function (snapshot) {
 
     }
 
-    getPlaceId(destination)
+    $('#flightbtn').on('click', function () {
+        getPlaceId(destination)
         .then(function (destinationPlaceId) {
             return getPlaceId(startPlace)
                 .then(function (startPlaceId) {
@@ -179,14 +183,20 @@ dbUser.on('value', function (snapshot) {
                     "x-rapidapi-key": "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
                 }
             }).then(function (response) {
-                // console.log(response)
-            })
-        });
+                console.log(response)
+                var quoteID = response.Quotes[0].OutboundLeg.CarrierIds[0];
+                var airline = ''
+                response.Carriers.forEach(function(carrier){
 
+                    var carrierId = carrier.CarrierId
+                    
+                    if (quoteID === carrierId){
+                        return airline = carrier.Name
+                    }
 
-    // ===== VARIABLE FOR ZOMATO API URL =====
+                })
 
-    var foodURL = `https://developers.zomato.com/api/v2.1/locations`;
+                console.log(airline)
 
     // ===== AJAX CALL TO ZOMATO ===== 
 
@@ -299,8 +309,28 @@ dbUser.on('value', function (snapshot) {
 
     });
 
+                var minPrice= response.Quotes[0].MinPrice
+                var flightDiv = $('<div>');
+                var carrier = $('<h1>')
+                var flightCost = $('<p>');
+                
+                carrier.text(airline);
+                carrier.appendTo(flightDiv);
+
+                flightCost.text('$'+ minPrice);
+                flightCost.appendTo(flightDiv);
+
+                flightDiv.addClass('card');
+                flightDiv.addClass('col-lg-6');
+                flightDiv.addClass('flightBox');
+
+               
 
 
+                $('#infoBox').append(flightDiv);
 
-
+            })
+        });
+       
+    });
 })
