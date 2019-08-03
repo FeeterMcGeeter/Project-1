@@ -105,40 +105,43 @@ dbUser.on('value', function (snapshot) {
     //console.log(endDateFix);
     //
     // ======= Booking AJAX call ========
-    //$.ajax({
-    //   url: "https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete",
-    //   headers: { ['X-RapidAPI-Key']: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43" },
-    //   data: {
-    //       languagecode: 'en-us',
-    //       text: destination
-    //   }
-    //})
-    //.then(function (cityCode) {
-    //   var destID= cityCode[0].dest_id
-    //
-    //    return $.ajax({
-    //        url:
-    //            "https://apidojo-booking-v1.p.rapidapi.com/properties/list",
-    //        headers: {
-    //            ["X-RapidAPI-Key"]: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
-    //        },
-    //        data: {
-    //            price_filter_currencycode: "USD",
-    //            order_by: "popularity",
-    //            languagecode: "en-us",
-    //            search_type: "city",
-    //            offset: 0,
-    //            dest_ids: destID,
-    //            guest_qty: "1",
-    //            arrival_date: startDateFix,
-    //            departure_date: endDateFix,
-    //            room_qty: "1"
-    //        }
-    //    })
-    //})
-    //.then(function(hotelBookings) {
-    //    console.log(hotelBookings)
-    //})
+    $("#hotelbtn").on("click", function () {
+        $.ajax({
+            url: "https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete",
+            headers: { ['X-RapidAPI-Key']: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43" },
+            data: {
+                languagecode: 'en-us',
+                text: destination
+            }
+        })
+            .then(function (response) {
+                var destID = response[0].dest_id
+
+                return $.ajax({
+                    url:
+                        "https://apidojo-booking-v1.p.rapidapi.com/properties/list",
+                    headers: {
+                        ["X-RapidAPI-Key"]: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
+                    },
+                    data: {
+                        price_filter_currencycode: "USD",
+                        order_by: "popularity",
+                        languagecode: "en-us",
+                        search_type: "city",
+                        offset: 0,
+                        dest_ids: destID,
+                        guest_qty: "1",
+                        arrival_date: startDateFix,
+                        departure_date: endDateFix,
+                        room_qty: "1"
+                    }
+                })
+            })
+            .then(function (hotelBookings) {
+                console.log(hotelBookings)
+            })
+    })
+
 
 
     function getPlaceId(query) {
