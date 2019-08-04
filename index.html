@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f98cc017d1.js"></script>
     <!-- ===== BOOTSTRAP CDN ===== -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,14 +19,17 @@
 <body>
     <!-- ===== MAIN NAVIGATION BAR =====  -->
     <div class="wrapper">
-        <div class="container-fluid animated slideInDown bg-primary mb-5 p-0" id="global-header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container-fluid bg-primary mb-5 p-0" id="global-header">
+            <nav class="navbar navbar-expand-md navbar-light bg-primary">
                 <a class="navbar-brand" href="./index.html">
                     <img src="./assets/images/hangrylogo.png" width="75" height="75" class="d-inline-block align-top"
-                        alt="logo">
+                    alt="logo">
                 </a>
-
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <!-- ===== Hamburger Menu ===== -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" id="toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href="./index.html">Home</a>
                         <a class="nav-item nav-link" href="./travel.html">Travel Info</a>
@@ -36,7 +40,7 @@
         </div>
 
         <!-- ===== CONTAINER FORM FOR USER REQUESTS ===== -->
-        <div class="row d-flex justify-content-center mb-5 p-3 animated fadeIn" id="main-content-container">
+        <div class="row d-flex justify-content-center mb-5 animated fadeIn" id="main-content-container">
             <div class="card col-md-8 my-3 animated zoomIn" id="main-form">
                 <div class="d-flex justify-content-center main-form-header py-2">
                     <h2>Let Us Find Your Destination!</h2>
@@ -71,6 +75,7 @@
                 </div>
             </div>
         </div>
+
         <!--SEARCH BUTTON MODAL -->
         <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -90,6 +95,7 @@
                 </div>
             </div>
         </div>
+
         <!-- ===== PUSHES THE FOOTER DOWN ===== -->
         <div class="push"></div>
     </div>
@@ -97,7 +103,7 @@
     <!-- ===== FOOTER ===== -->
     <div class="container-fluid global-footer animated slideInUp">
         <footer class="footer">
-            <p>Copyright &copy;</p>
+            <p>Copyright &copy; The Hangry Traveler</p>
         </footer>
     </div>
 

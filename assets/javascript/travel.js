@@ -18,10 +18,10 @@ var database = firebase.database();
 var id = '';
 id = localStorage.user
 
-// ==== Variable database ref object to the child userSearch ====
+// ===== Variable database ref object to the child userSearch =====
 var dbUser = database.ref().child('user').child(id);
 
-// ==== Variable for AJAX calls from index.html ====
+// ===== Variable for AJAX calls from index.html =====
 
 var destination = '';
 var startDate = '';
@@ -72,7 +72,7 @@ dbUser.on('value', function (snapshot) {
 
             var weatherContainer = $("#weather-data");
             var weatherDiv = $("<div class='forecast-card'>");
-            weatherDiv.attr("id", "day-" + i + 1);
+            weatherDiv.attr("id", "day-" + (i + 1));
 
             // ===== Parsing the data to an integer and rounding up or down ===== 
             var temperatureData = dailyWeatherData.main.temp;
@@ -83,7 +83,7 @@ dbUser.on('value', function (snapshot) {
             var dateData = dailyWeatherData.dt_txt;
             var dateFormat = moment(dateData).format("ddd");
 
-            var temperatureDisplay = $("<h4>").text(temperatureRound);
+            var temperatureDisplay = $("<h4>").html(temperatureRound + "&#176;");
             var descriptionDisplay = $("<p>").text(dailyWeatherData.weather[0].description);
             var dateDisplay = $("<h5>").text(dateFormat);
 
@@ -97,15 +97,15 @@ dbUser.on('value', function (snapshot) {
         })
     })
 
-    // ======= Booking required Variables
+    // ===== Booking required Variables =====
 
     var startDateFix = moment(startDate).format('YYYY-MM-DD')
     var endDateFix = moment(endDate).format('YYYY-MM-DD')
 
     //console.log(startDateFix);
     //console.log(endDateFix);
-    //
-    // ======= Booking AJAX call ========
+    
+    // ===== Booking AJAX call =====
     $("#hotelbtn").on("click", function () {
         $('#infoBox').empty();
         $.ajax({
@@ -115,33 +115,31 @@ dbUser.on('value', function (snapshot) {
                 languagecode: 'en-us',
                 text: destination
             }
-        })
-            .then(function (response) {
-                var destID = response[0].dest_id
+        }).then(function (response) {
+            var destID = response[0].dest_id
 
-                return $.ajax({
-                    url:
-                        "https://apidojo-booking-v1.p.rapidapi.com/properties/list",
-                    headers: {
-                        ["X-RapidAPI-Key"]: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
-                    },
-                    data: {
-                        price_filter_currencycode: "USD",
-                        order_by: "popularity",
-                        languagecode: "en-us",
-                        search_type: "city",
-                        offset: 0,
-                        dest_ids: destID,
-                        guest_qty: "1",
-                        arrival_date: startDateFix,
-                        departure_date: endDateFix,
-                        room_qty: "1"
-                    }
-                })
+            return $.ajax({
+                url:
+                    "https://apidojo-booking-v1.p.rapidapi.com/properties/list",
+                headers: {
+                    ["X-RapidAPI-Key"]: "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
+                },
+                data: {
+                    price_filter_currencycode: "USD",
+                    order_by: "popularity",
+                    languagecode: "en-us",
+                    search_type: "city",
+                    offset: 0,
+                    dest_ids: destID,
+                    guest_qty: "1",
+                    arrival_date: startDateFix,
+                    departure_date: endDateFix,
+                    room_qty: "1"
+                }
             })
-            .then(function (hotelBookings) {
-                console.log(hotelBookings)
-            })
+        }).then(function (hotelBookings) {
+            console.log(hotelBookings)
+        })
     })
 
 
@@ -330,6 +328,15 @@ dbUser.on('value', function (snapshot) {
             })
 
 
+                    flightDiv.addClass('card');
+                    flightDiv.addClass('col-lg-6');
+                    flightDiv.addClass('flightBox');
+                    
+                    $('#infoBox').append(flightDiv);
+                })
+            });
+
+
 
 
 
@@ -338,6 +345,7 @@ dbUser.on('value', function (snapshot) {
             console.log(response[0].average_cost_for_two)
             console.log(response[0])
         })
+
 
     });
 

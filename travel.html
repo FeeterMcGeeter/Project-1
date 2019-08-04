@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet">
     <!-- ===== BOOTSTRAP CDN ===== -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -16,14 +17,17 @@
 <body>
     <!-- ===== MAIN NAVIGATION BAR =====  -->
     <div class="wrapper">
-        <div class="container-fluid bg-primary mb-2 p-0" id="global-header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container-fluid bg-primary mb-5 p-0" id="global-header">
+            <nav class="navbar navbar-expand-md navbar-light bg-primary">
                 <a class="navbar-brand" href="./index.html">
                     <img src="./assets/images/hangrylogo.png" width="75" height="75" class="d-inline-block align-top"
-                        alt="logo">
+                    alt="logo">
                 </a>
-
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <!-- ===== Hamburger Menu ===== -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" id="toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href="./index.html">Home</a>
                         <a class="nav-item nav-link" href="./travel.html">Travel Info</a>
@@ -36,9 +40,9 @@
         <!-- ===== CONTAINER FOR USER REQUESTED HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
         <div class="container d-flex justify-content-center mb-3">
             <div class="row" id="btnInfoRow">
-                <button type="button" class="btn btn-light mr-3" id="flightbtn">Flights</button>
-                <button type="button" class="btn btn-light mr-3" id="hotelbtn">Hotels</button>
-                <button type="button" class="btn btn-light" id="foodbtn">Food</button>
+                <button type="button" class="btn btn-tabs btn-light mr-3" id="flightbtn">Flights</button>
+                <button type="button" class="btn btn-tabs btn-light mr-3" id="hotelbtn">Hotels</button>
+                <button type="button" class="btn btn-tabs btn-light" id="foodbtn">Food</button>
             </div>
         </div>
 
@@ -46,6 +50,8 @@
         <div class="row" id="weather-data">
 
         </div>
+
+        <div class="clearfix"></div>
 
         <!-- ===== CONTAINER FOR DATA OUTPUT HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
         <div class="container">
