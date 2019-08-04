@@ -140,7 +140,55 @@ dbUser.on('value', function (snapshot) {
                 })
             })
             .then(function (hotelBookings) {
-                console.log(hotelBookings)
+
+                console.log(hotelBookings.result[2])
+
+                for (var i = 0; i <= 4; i++) {
+                    var address = hotelBookings.result[i].address;
+                    var name = hotelBookings.result[i].hotel_name;
+                    var url = hotelBookings.result[i].url;
+                    var review = hotelBookings.result[i].review_score;
+                    var img = hotelBookings.result[i].main_photo_url;
+                    var newImg = '';
+                    var hotelDiv = $('<div>');
+                    var nameImgBox = $('<div>');
+                    var infoElem = $('<div>')
+                    var addElem = $('<p>');
+                    var hotelElem = $('<h2>');
+                    var urlElem = $('<a>');
+                    var reviewElem = $('<p>');
+                    var imgElem = $('<img>')
+
+                    hotelElem.text(name);
+                    hotelElem.appendTo(nameImgBox);
+
+                    newImg = img.replace('square60', 'square200');
+                    imgElem.attr('src', newImg);
+                    imgElem.appendTo(nameImgBox);
+
+                    nameImgBox.appendTo(hotelDiv);
+                    nameImgBox.addClass('col-lg-4')
+
+                    addElem.text('Address: ' + address);
+                    addElem.appendTo(infoElem);
+
+                    reviewElem.text('Review Score: ' + review);
+                    reviewElem.appendTo(infoElem);
+
+                    urlElem.text('Book Here');
+                    urlElem.attr('href', url);
+                    urlElem.attr('target', '_blank');
+                    urlElem.appendTo(infoElem);
+
+                    infoElem.appendTo(hotelDiv);
+                    infoElem.addClass('col-lg-8');
+
+                    hotelDiv.addClass('card');
+                    hotelDiv.addClass('col-lg-12');
+                    hotelDiv.addClass('row')
+
+                    $('#infoBox').append(hotelDiv)
+                }
             })
     })
 
@@ -205,7 +253,7 @@ dbUser.on('value', function (snapshot) {
                     var carrier = $('<h1>')
                     var flightCost = $('<p>');
 
-                    if(response.Quotes.length === 0){
+                    if (response.Quotes.length === 0) {
                         return
                     }
 
