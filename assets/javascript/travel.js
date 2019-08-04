@@ -185,7 +185,8 @@ dbUser.on('value', function (snapshot) {
 
                     hotelDiv.addClass('card');
                     hotelDiv.addClass('col-lg-12');
-                    hotelDiv.addClass('row')
+                    hotelDiv.addClass('row');
+                    hotelDiv.addClass('hotelBox')
 
                     $('#infoBox').append(hotelDiv)
                 }
