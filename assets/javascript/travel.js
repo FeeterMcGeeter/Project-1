@@ -272,14 +272,18 @@ dbUser.on('value', function (snapshot) {
                                 var menu = $('<a>')
                                 var reviews = $('<p>')
                                 var phone = $('<p>')
+                                var address = $('<p>')
+                                // console.log(address);
 
-
-                                restaurant.text(item.name)
-                                restaurant.appendTo(resDiv)
+                                restaurant.text(item.name);
+                                restaurant.appendTo(resDiv);
 
                                 resImg.attr('src', item.featured_image)
                                 resImg.appendTo(resDiv)
                                 resImg.attr('style', 'width:200px')
+
+                                address.text('Address: ' + item.location.address)
+                                address.appendTo(resDiv)
 
                                 menu.text('Menu')
                                 menu.attr('href', item.menu_url)
@@ -289,10 +293,9 @@ dbUser.on('value', function (snapshot) {
                                 reviews.text('Reviews: ' + item.all_reviews_count)
                                 reviews.appendTo(resDiv)
 
-                                phone.text('phone: ' + item.phone_numbers)
+                                phone.text('Phone: ' + item.phone_numbers)
                                 phone.appendTo(resDiv)
-
-
+                                
                                 resDiv.addClass('card')
                                 resDiv.addClass('col-lg-12')
                                 resDiv.addClass('foodBox')
@@ -300,14 +303,9 @@ dbUser.on('value', function (snapshot) {
                                 $('#infoBox').append(resDiv);
                             })
 
-
-
-
-
-
-                            console.log(response[0])
-                            console.log(response[0].average_cost_for_two)
-                            console.log(response[0])
+                            // console.log(response[0])
+                            // console.log(response[0].average_cost_for_two)
+                            // console.log(response[0])
                         })
 
                     });
