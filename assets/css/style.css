@@ -33,7 +33,7 @@ body {
     color: #FFA500;
 }
 
-/* ===== LOGO ===== */
+/* ===== Logo ===== */
 .navbar-brand img:hover {
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
@@ -59,7 +59,7 @@ body {
     }
 }
 
-/* ===== HAMBURGER MENU ===== */
+/* ===== Hamburger Menu ===== */
 .navbar-light .navbar-toggler {
     border-color: #fff;
     outline: none;
@@ -68,6 +68,16 @@ body {
 #toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")
 }
+
+.navbar-light .navbar-toggler:hover {
+    border-color: #FFA500;
+}
+
+#toggler-icon:hover {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,165,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")
+}
+
+
 
 /* ==================== MAIN PAGE ==================== */
 #main-content-container {
@@ -110,13 +120,16 @@ hr {
     height: 75px;
 }
 
+
+
+
 /* ==================== TRAVEL.HTML PAGE ==================== */
 #btnInfoRow {
-    position: relative;
+    margin: 0 0 20px 0;
 }
 
 .btn-tabs {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .btn-tabs:hover {
@@ -124,20 +137,38 @@ hr {
     border: 1px solid #000;
     box-shadow: 0px 5px 5px 1px #000000;
 }
-
-.clearfix {
-    clear: both;
+/* ========== WEATHER AND TRAVEL INFO CONTAINER ========== */
+.weather-travel-info-container {
+    display: flex;
 }
 
 /* ===== OPENWEATHER CONTAINER ===== */
-#weather-data {
+.fas {
+    color: #FFFF00;
+    text-shadow:
+		-1px -1px 0 #FFA500,
+		1px -1px 0 #FFA500,
+		-1px 1px 0 #FFA500,
+		1px 1px 0 #FFA500;
+}
+
+.fiveDayForecast {
     width: 295px;
-    margin: 0 20px 20px auto;
+    margin-left: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #007BFF;
+    text-align: center;
+    letter-spacing: .1em;
+}
+
+#weather-data {
+    display: flex;
+    width: 295px;
+    margin: 0 20px 20px 20px;
     -webkit-box-shadow: 0px 5px 5px 1px #000000; 
     box-shadow: 0px 5px 5px 1px #000000;
-    position: absolute;
-    top: 115px;
-    right: 0;
 }
 
 .forecast-card {
@@ -169,17 +200,132 @@ hr {
     border-right: none;
 }
 
-/* ==================== FAVORITES PAGE ====================  */
-.favorites-row {
+/* ===== FLIGHT, HOTELS, AND FOOD INFO CONTAINER ===== */
+.container-api {
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin-bottom: 10px;
 }
 
-.favorites {
-    margin-right: 40px;
+#infoBox {
+    width: 100%;
+    margin: 0 20px 10px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* ===== FLIGHT INFO ===== */
+.flightBox {
+    width: 50%;
+    background: url(../images/flight.jpeg);
+    border: 1px solid #000;
+}
+
+.flightBox p {
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: .1em;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.flightBox span {
+    font-weight: 700;
+}
+
+/* ===== HOTEL INFO ===== */
+.hotelBox {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.hotelTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hotelTitle h2 {
+    padding-left: 15px;
+}
+
+#heart {
+    align-self: end;
+    background: none;
+    border: none;
     outline: none;
 }
+
+.address-review {
+    display: flex;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+}
+
+.address-review span {
+    font-weight: 700;
+}
+
+.address-review a:hover {
+    color: #FFA500;
+    text-decoration: none;
+}
+
+/* ===== FOOD INFO ===== */
+.foodBox {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.foodTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.foodTitle h2 {
+    padding-left: 15px;
+}
+
+#foodFav {
+    align-self: end;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.img-resInfo {
+    display: flex;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+}
+
+.img-resInfo p {
+    margin-bottom: 10px;
+}
+
+.img-resInfo span {
+    font-weight: 700;
+}
+
+.img-resInfo a:hover {
+    color: #FFA500;
+    text-decoration: none;
+}
+
+/* ===== ICON FOR FAVORITING HOTELS AND FOOD ===== */
+.fa-heart {
+    color: #D3D3D3;
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.fa-heart:hover {
+    color: #808080;
+}
+
+/* ==================== FAVORITES PAGE ==================== */
+
 
 /* ===== GLOBAL FOOTER ====== */
 .global-footer {
@@ -192,6 +338,33 @@ hr {
     text-align: center;
 }
 
+@media screen and (max-width: 500px) {
+    .weather-container {
+        display: none;
+    }
 
+    #infoBox {
+        width: 100%;
+        margin: 0 10px 10px 10px;
+    }
+
+    .flightBox {
+        width: 100%;
+    }
+
+    .flightBox h1 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .address-review {
+        flex-direction: column;
+    }
+
+    .img-resInfo {
+        flex-direction: column;
+    }
+}
  
   

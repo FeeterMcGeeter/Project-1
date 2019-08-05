@@ -36,30 +36,20 @@
             </nav>
         </div>
 
-        <!-- ===== DROPDOWN MENUS FOR THE FAVORITED AND PREVIOUSLY SEARCHED BUTTONS ===== -->
-        <div class="row favorites-row">
-            <div class="btn-group">
-                <button class="btn btn-secondary btn-lg dropdown-toggle favorites" type="button" data-toggle="dropdown" aria-haspopup="true"           aria-expanded="false">Favorites
-                </button>
-                <div class="dropdown-menu" id="favorited"></div>
-            </div>
-
-            <div class="btn-group">
-                <button class="btn btn-secondary btn-lg dropdown-toggle favorites" type="button" data-toggle="dropdown" aria-haspopup="true"            aria-expanded="false">Recent Searches
-                </button>
-                <div class="dropdown-menu" id="recentSearches"></div>
-            </div>
+        <!-- ===== MENU BUTTONS FOR THE FAVORITED AND PREVIOUSLY SEARCHED BUTTONS ===== -->
+        <div class="row d-flex justify-content-center" id="favInfoRow">
+            <button type="button" class="btn btn-tabs btn-light mr-3" id="hotelFavBtn">Hotel Favorites</button>
+            <button type="button" class="btn btn-tabs btn-light" id="foodFavBtn">Restaurant Favorites</button>
         </div>
+
         <!-- ===== PUSHES THE FOOTER DOWN ===== -->
         <div class="push"></div>
     </div>
 
-
-
     <!-- ===== FOOTER ===== -->
     <div class="container-fluid global-footer">
         <footer class="footer">
-            <p>Copyright &copy;</p>
+            <p>&copy; The Hangry Traveler</p>
         </footer>
     </div>
 
@@ -80,8 +70,6 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
     <!-- ===== MOMENT CDN =====  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="assets/javascript/index.js"></script>
-    <script src="assets/javascript/travel.js"></script>
     <script src="assets/javascript/favorites.js"></script>
 
 </body>
