@@ -208,12 +208,15 @@ hr {
 }
 
 #infoBox {
-    margin: 0 0 20px 0;
-    width: 50%;
+    width: 100%;
+    margin: 0 20px 10px 20px;
+    display: flex;
+    justify-content: center;
 }
 
 /* ===== FLIGHT INFO ===== */
 .flightBox {
+    width: 50%;
     background: url(../images/flight.jpeg);
     border: 1px solid #000;
 }
@@ -229,7 +232,53 @@ hr {
     font-weight: 700;
 }
 
-/* ==================== FAVORITES PAGE ====================  */
+/* ===== HOTEL INFO ===== */
+.hotelBox {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.address-review {
+    display: flex;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+}
+
+.address-review span {
+    font-weight: 700;
+}
+
+.address-review a:hover {
+    color: #FFA500;
+    text-decoration: none;
+}
+
+/* ===== FOOD INFO ===== */
+    .foodBox {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .img-resInfo {
+        display: flex;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 18px;
+    }
+
+    .img-resInfo p {
+        margin-bottom: 10px;
+    }
+
+    .img-resInfo span {
+        font-weight: 700;
+    }
+
+    .img-resInfo a:hover {
+        color: #FFA500;
+        text-decoration: none;
+    }
+
+/* ==================== FAVORITES PAGE ==================== */
 .favorites-row {
     display: flex;
     justify-content: center;
@@ -253,8 +302,31 @@ hr {
 }
 
 @media screen and (max-width: 500px) {
+    .weather-container {
+        display: none;
+    }
+
+    #infoBox {
+        width: 100%;
+        margin: 0 10px 10px 10px;
+    }
+
+    .flightBox {
+        width: 100%;
+    }
+
     .flightBox h1 {
         font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .address-review {
+        flex-direction: column;
+    }
+
+    .img-resInfo {
+        flex-direction: column;
     }
 }
  

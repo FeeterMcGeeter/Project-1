@@ -151,27 +151,31 @@ dbUser.on('value', function (snapshot) {
                         var newImg = '';
                         var hotelDiv = $('<div>');
                         var nameImgBox = $('<div>');
-                        var infoElem = $('<div>')
+                        var infoElem = $('<div>');
                         var addElem = $('<p>');
                         var hotelElem = $('<h2>');
                         var urlElem = $('<a>');
                         var reviewElem = $('<p>');
-                        var imgElem = $('<img>')
+                        var imgElem = $('<img>');
+                        var hotelInfoDiv = $('<div>');
 
                         hotelElem.text(name);
-                        hotelElem.appendTo(nameImgBox);
+                        hotelElem.appendTo(hotelDiv);
 
                         newImg = img.replace('square60', 'square200');
                         imgElem.attr('src', newImg);
                         imgElem.appendTo(nameImgBox);
 
-                        nameImgBox.appendTo(hotelDiv);
+                        hotelInfoDiv.addClass('address-review');
+                        hotelInfoDiv.appendTo(hotelDiv);
+
+                        nameImgBox.appendTo(hotelInfoDiv);
                         nameImgBox.addClass('col-lg-4')
 
-                        addElem.text('Address: ' + address);
+                        addElem.html('<span>Address: </span>' + address);
                         addElem.appendTo(infoElem);
 
-                        reviewElem.text('Review Score: ' + review);
+                        reviewElem.html('<span>Review Score: </span>' + review);
                         reviewElem.appendTo(infoElem);
 
                         urlElem.text('Book Here');
@@ -179,7 +183,7 @@ dbUser.on('value', function (snapshot) {
                         urlElem.attr('target', '_blank');
                         urlElem.appendTo(infoElem);
 
-                        infoElem.appendTo(hotelDiv);
+                        infoElem.appendTo(hotelInfoDiv);
                         infoElem.addClass('col-lg-8');
 
                         hotelDiv.addClass('card');
@@ -338,36 +342,48 @@ dbUser.on('value', function (snapshot) {
 
                     response.forEach(function (item) {
 
-                        var resDiv = $('<div>')
-                        var resImg = $('<img>')
-                        var restaurant = $('<h1>')
-                        var menu = $('<a>')
-                        var reviews = $('<p>')
-                        var phone = $('<p>')
+                        var resDiv = $('<div>');
+                        var resImg = $('<img>');
+                        var restaurant = $('<h1>');
+                        var menu = $('<a>');
+                        var reviews = $('<p>');
+                        var phone = $('<p>');
+                        var resImgAndInfoDiv = $('<div>');
+                        var imgDiv = $('<div>');
+                        var resInfoDiv = $('<div>');
+                        
+                        restaurant.text(item.name);
+                        restaurant.appendTo(resDiv);
 
+                        resImg.attr('src', item.featured_image);
+                        resImg.attr('style', 'width:200px');
+                        resImg.appendTo(imgDiv);
 
-                        restaurant.text(item.name)
-                        restaurant.appendTo(resDiv)
+                        reviews.html('<span>Reviews: </span>' + item.all_reviews_count);
+                        reviews.appendTo(resInfoDiv);
 
-                        resImg.attr('src', item.featured_image)
-                        resImg.appendTo(resDiv)
-                        resImg.attr('style', 'width:200px')
+                        phone.html('<span>Phone: </span>' + item.phone_numbers);
+                        phone.appendTo(resInfoDiv);
 
-                        menu.text('Menu')
-                        menu.attr('href', item.menu_url)
-                        menu.attr('target', '_blank')
-                        menu.appendTo(resDiv)
+                        menu.text('Menu');
+                        menu.attr('href', item.menu_url);
+                        menu.attr('target', '_blank');
+                        menu.appendTo(resInfoDiv);
 
-                        reviews.text('Reviews: ' + item.all_reviews_count)
-                        reviews.appendTo(resDiv)
+                        resDiv.addClass('card');
+                        resDiv.addClass('col-lg-12');
+                        resDiv.addClass('foodBox');
 
-                        phone.text('phone: ' + item.phone_numbers)
-                        phone.appendTo(resDiv)
+                        imgDiv.addClass('col-lg-4');
+                        resInfoDiv.addClass('col-lg-8');
+                        resImgAndInfoDiv.addClass('img-resInfo');
 
+                        resDiv.append(resImgAndInfoDiv);
+                        resImgAndInfoDiv.append(imgDiv);
+                        resImgAndInfoDiv.append(resInfoDiv);
+                        
+                        
 
-                        resDiv.addClass('card')
-                        resDiv.addClass('col-lg-12')
-                        resDiv.addClass('foodBox')
 
                         $('#infoBox').append(resDiv);
                     })
