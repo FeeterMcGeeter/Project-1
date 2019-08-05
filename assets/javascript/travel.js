@@ -369,12 +369,13 @@ dbUser.on('value', function (snapshot) {
                 var heartButton = $('<button>');
                 var heartIcon = $('<i>');
 
-                heartButton.attr('id', 'foodFav');
+                heartButton.addClass('foodFav');
                 heartButton.addClass('favBtn');
                 heartIcon.addClass('fas');
                 heartIcon.addClass('fa-heart');
                 resTitleDiv.addClass('foodTitle');
                 restaurant.text(item.name);
+                heartButton.attr('restaurant',item.name)
 
                 restaurant.appendTo(resTitleDiv);
                 heartIcon.appendTo(heartButton);
@@ -384,17 +385,21 @@ dbUser.on('value', function (snapshot) {
                 resImg.attr('src', item.featured_image);
                 resImg.attr('style', 'width:200px');
                 resImg.appendTo(imgDiv);
+                heartButton.attr('img',item.featured_image);
 
                 reviews.html('<span>Reviews: </span>' + item.all_reviews_count);
                 reviews.appendTo(resInfoDiv);
+                heartButton.attr('review',item.all_reviews_count)
 
                 phone.html('<span>Phone: </span>' + item.phone_numbers);
                 phone.appendTo(resInfoDiv);
+                heartButton.attr('phone',item.phone_numbers)
 
                 menu.text('Menu');
                 menu.attr('href', item.menu_url);
                 menu.attr('target', '_blank');
                 menu.appendTo(resInfoDiv);
+                heartButton.attr('menuURL',item.menu_url)
 
                 resDiv.addClass('card');
                 resDiv.addClass('col-lg-12');
@@ -431,3 +436,21 @@ $(document).on('click', '.favHotel', function () {
     })
 })
 
+$(document).on('click','.foodFav',function(){
+
+    var resName = $(this).attr('restaurant');
+    var resImg = $(this).attr('img');
+    var resReview = $(this).attr('review');
+    var resMenu = $(this).attr('menuURL');
+    var resPhone = $(this).attr('phone')
+
+
+     dbUserFavFood.push({
+        name:resName,
+        imgURL : resImg,
+        review: resReview,
+        menuURL: resMenu,
+        phone: resPhone
+     })
+
+})
