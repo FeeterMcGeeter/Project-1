@@ -344,7 +344,7 @@ dbUser.on('value', function (snapshot) {
                         var menu = $('<a>')
                         var reviews = $('<p>')
                         var phone = $('<p>')
-
+                        var address = $('<p>')
 
                         restaurant.text(item.name)
                         restaurant.appendTo(resDiv)
@@ -352,6 +352,10 @@ dbUser.on('value', function (snapshot) {
                         resImg.attr('src', item.featured_image)
                         resImg.appendTo(resDiv)
                         resImg.attr('style', 'width:200px')
+                        
+                        address.text(item.locations.address)
+                        address.appendTo(resDiv)
+                        
 
                         menu.text('Menu')
                         menu.attr('href', item.menu_url)
