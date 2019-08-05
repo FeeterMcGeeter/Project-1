@@ -308,6 +308,19 @@ dbUser.on('value', function (snapshot) {
 
                 }).then(function (response) {
 
+<<<<<<< HEAD
+                                var resDiv = $('<div>')
+                                var resImg = $('<img>')
+                                var restaurant = $('<h1>')
+                                var menu = $('<a>')
+                                var reviews = $('<p>')
+                                var phone = $('<p>')
+                                var address = $('<p>')
+                                // console.log(address);
+
+                                restaurant.text(item.name);
+                                restaurant.appendTo(resDiv);
+=======
                     var restaurants = response.best_rated_restaurant
                     var requests = []
                     // possibly make forEach
@@ -325,10 +338,21 @@ dbUser.on('value', function (snapshot) {
 
 
                             }
+>>>>>>> origin
 
 
+<<<<<<< HEAD
+                                address.text('Address: ' + item.location.address)
+                                address.appendTo(resDiv)
+
+                                menu.text('Menu')
+                                menu.attr('href', item.menu_url)
+                                menu.attr('target', '_blank')
+                                menu.appendTo(resDiv)
+=======
                         })
                         if (i < 5) {
+>>>>>>> origin
 
                             requests.push(restauranRequest)
                         }
@@ -337,11 +361,20 @@ dbUser.on('value', function (snapshot) {
                     console.log(requests)
                     return Promise.all(requests)
 
+<<<<<<< HEAD
+                                phone.text('Phone: ' + item.phone_numbers)
+                                phone.appendTo(resDiv)
+                                
+                                resDiv.addClass('card')
+                                resDiv.addClass('col-lg-12')
+                                resDiv.addClass('foodBox')
+=======
 
                 }).then(function (response) {
                     // console.log(response[3])
 
                     response.forEach(function (item) {
+>>>>>>> origin
 
                         var resDiv = $('<div>')
                         var resImg = $('<img>')
@@ -350,6 +383,12 @@ dbUser.on('value', function (snapshot) {
                         var reviews = $('<p>')
                         var phone = $('<p>')
 
+<<<<<<< HEAD
+                            // console.log(response[0])
+                            // console.log(response[0].average_cost_for_two)
+                            // console.log(response[0])
+                        })
+=======
 
                         restaurant.text(item.name)
                         restaurant.appendTo(resDiv)
@@ -368,6 +407,7 @@ dbUser.on('value', function (snapshot) {
 
                         phone.text('phone: ' + item.phone_numbers)
                         phone.appendTo(resDiv)
+>>>>>>> origin
 
 
                         resDiv.addClass('card')
