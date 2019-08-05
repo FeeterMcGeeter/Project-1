@@ -345,6 +345,83 @@ dbUser.on('value', function (snapshot) {
                 })
                 if (i < 10) {
 
+
+                }).then(function (cityData) {
+                    console.log(cityData);
+                    var type = cityData.location_suggestions[0].entity_type;
+                    var id = cityData.location_suggestions[0].entity_id;
+                    return $.ajax({
+                        url: 'https://developers.zomato.com/api/v2.1/location_details',
+                        method: 'GET',
+                        data: {
+                            apikey: "c493267fcaf15186d28434182e181ee9",
+                            entity_id: id,
+                            entity_type: type,
+
+                        }
+                    })
+
+                }).then(function (response) {
+
+                    var restaurants = response.best_rated_restaurant
+                    var requests = []
+                    // possibly make forEach
+                    restaurants.forEach(function (restaurant, i) {
+                        console.log(i)
+                        var id = restaurant.restaurant.id
+
+                        console.log(restaurant.restaurant.id)
+                        var restauranRequest = $.ajax({
+                            url: 'https://developers.zomato.com/api/v2.1/restaurant',
+                            method: 'GET',
+                            data: {
+                                apikey: "c493267fcaf15186d28434182e181ee9",
+                                res_id: id,
+
+
+                            }
+
+
+                        })
+                        if (i < 5) {
+
+                            requests.push(restauranRequest)
+                        }
+                        //push ajax call to requests
+                    })
+                    console.log(requests)
+                    return Promise.all(requests)
+
+
+                }).then(function (response) {
+                    // console.log(response[3])
+
+                    response.forEach(function (item) {
+
+                        var resDiv = $('<div>')
+                        var resImg = $('<img>')
+                        var restaurant = $('<h1>')
+                        var menu = $('<a>')
+                        var reviews = $('<p>')
+                        var phone = $('<p>')
+                        var address = $('<p>')
+
+                        restaurant.text(item.name)
+                        restaurant.appendTo(resDiv)
+
+                        resImg.attr('src', item.featured_image)
+                        resImg.appendTo(resDiv)
+                        resImg.attr('style', 'width:200px')
+                        
+                        address.text(item.locations.address)
+                        address.appendTo(resDiv)
+                        
+
+                        menu.text('Menu')
+                        menu.attr('href', item.menu_url)
+                        menu.attr('target', '_blank')
+                        menu.appendTo(resDiv)
+
                     requests.push(restauranRequest)
                 }
                 //push ajax call to requests
@@ -418,6 +495,7 @@ dbUser.on('value', function (snapshot) {
         })
     });
 })
+
 
 $(document).on('click', '.favHotel', function () {
 
