@@ -1,12 +1,12 @@
 // ===== FIREBASE CONFIGURATION ===== 
 var firebaseConfig = {
-    apiKey: "AIzaSyAbOz7Rc8Sy34ZeQnRnZrLrEB0UFisJOuo",
-    authDomain: "project-1-62259.firebaseapp.com",
-    databaseURL: "https://project-1-62259.firebaseio.com",
-    projectId: "project-1-62259",
+    apiKey: "AIzaSyAZfVc098J9UReQka9OS4XmKSOxcMEjQJY",
+    authDomain: "travel-1d3b5.firebaseapp.com",
+    databaseURL: "https://travel-1d3b5.firebaseio.com",
+    projectId: "travel-1d3b5",
     storageBucket: "",
-    messagingSenderId: "811913379053",
-    appId: "1:811913379053:web:3f6e668187ab670e"
+    messagingSenderId: "301156682375",
+    appId: "1:301156682375:web:37c5c7813602600a"
 };
 // ===== Initialize Firebase =====
 firebase.initializeApp(firebaseConfig);

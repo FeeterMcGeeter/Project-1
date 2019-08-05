@@ -1,15 +1,18 @@
 // ===== FIREBASE CONFIGURATION ===== 
 var firebaseConfig = {
-    apiKey: "AIzaSyAbOz7Rc8Sy34ZeQnRnZrLrEB0UFisJOuo",
-    authDomain: "project-1-62259.firebaseapp.com",
-    databaseURL: "https://project-1-62259.firebaseio.com",
-    projectId: "project-1-62259",
+    apiKey: "AIzaSyAZfVc098J9UReQka9OS4XmKSOxcMEjQJY",
+    authDomain: "travel-1d3b5.firebaseapp.com",
+    databaseURL: "https://travel-1d3b5.firebaseio.com",
+    projectId: "travel-1d3b5",
     storageBucket: "",
-    messagingSenderId: "811913379053",
-    appId: "1:811913379053:web:3f6e668187ab670e"
+    messagingSenderId: "301156682375",
+    appId: "1:301156682375:web:37c5c7813602600a"
 };
 // ===== Initialize Firebase =====
 firebase.initializeApp(firebaseConfig);
+
+// ===== Variable for database reference =====
+var database = firebase.database();
 
 // ===== Variable for database reference =====
 var database = firebase.database();
@@ -22,7 +25,7 @@ var favId = localStorage.userFav
 // ===== Variable database ref object to the child userSearch =====
 var dbUser = database.ref().child('user').child(id);
 var dbUserFavHotel = database.ref().child('fav').child(favId).child('hotel')
-
+var dbUserFavFood = databaase.ref().child('fav').child(favId).child('food')
 
 // ===== Variable for AJAX calls from index.html =====
 
@@ -145,7 +148,7 @@ dbUser.on('value', function (snapshot) {
 
                     console.log(hotelBookings.result[2])
 
-                    for (var i = 0; i <= 4; i++) {
+                    for (var i = 0; i <= 9; i++) {
                         var address = hotelBookings.result[i].address;
                         var name = hotelBookings.result[i].hotel_name;
                         var url = hotelBookings.result[i].url;
@@ -348,7 +351,7 @@ dbUser.on('value', function (snapshot) {
 
 
                 })
-                if (i < 5) {
+                if (i < 10) {
 
                     requests.push(restauranRequest)
                 }
