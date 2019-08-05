@@ -25,7 +25,7 @@ var favId = localStorage.userFav
 // ===== Variable database ref object to the child userSearch =====
 var dbUser = database.ref().child('user').child(id);
 var dbUserFavHotel = database.ref().child('fav').child(favId).child('hotel')
-var dbUserFavFood = databaase.ref().child('fav').child(favId).child('food')
+var dbUserFavFood = database.ref().child('fav').child(favId).child('food')
 
 // ===== Variable for AJAX calls from index.html =====
 
