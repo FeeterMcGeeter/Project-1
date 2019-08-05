@@ -243,13 +243,15 @@ hr {
     justify-content: space-between;
 }
 
-.fa-heart {
-    color: #F5F5F5;
-    text-shadow:
-		-1px -1px 0 #B22222,
-		1px -1px 0 #B22222,
-		-1px 1px 0 #B22222,
-		1px 1px 0 #B22222;
+.hotelTitle h2 {
+    padding-left: 15px;
+}
+
+#heart {
+    align-self: end;
+    background: none;
+    border: none;
+    outline: none;
 }
 
 .address-review {
@@ -268,35 +270,66 @@ hr {
 }
 
 /* ===== FOOD INFO ===== */
-    .foodBox {
-        padding: 10px;
-        margin-bottom: 10px;
-    }
+.foodBox {
+    padding: 10px;
+    margin-bottom: 10px;
+}
 
-    .img-resInfo {
-        display: flex;
-        font-family: 'Source Sans Pro', sans-serif;
-        font-size: 18px;
-    }
+.foodTitle {
+    display: flex;
+    justify-content: space-between;
+}
 
-    .img-resInfo p {
-        margin-bottom: 10px;
-    }
+.foodTitle h2 {
+    padding-left: 15px;
+}
 
-    .img-resInfo span {
-        font-weight: 700;
-    }
+#foodFav {
+    align-self: end;
+    background: none;
+    border: none;
+    outline: none;
+}
 
-    .img-resInfo a:hover {
-        color: #FFA500;
-        text-decoration: none;
-    }
+.img-resInfo {
+    display: flex;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+}
+
+.img-resInfo p {
+    margin-bottom: 10px;
+}
+
+.img-resInfo span {
+    font-weight: 700;
+}
+
+.img-resInfo a:hover {
+    color: #FFA500;
+    text-decoration: none;
+}
+
+/* ===== ICON FOR FAVORITING HOTELS AND FOOD ===== */
+.fa-heart {
+    color: #D3D3D3;
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.fa-heart:hover {
+    color: #808080;
+}
 
 /* ==================== FAVORITES PAGE ==================== */
 .favorites-row {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
 }
 
 .favorites {
