@@ -15,11 +15,14 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 // ===== Variable of key for user pulled from localStorage =====
-var id = '';
-id = localStorage.user
+var id = localStorage.user
+var favId = localStorage.userFav
+
 
 // ===== Variable database ref object to the child userSearch =====
 var dbUser = database.ref().child('user').child(id);
+var dbUserFavHotel = database.ref().child('fav').child(favId).child('hotel')
+
 
 // ===== Variable for AJAX calls from index.html =====
 
@@ -160,13 +163,18 @@ dbUser.on('value', function (snapshot) {
                         var hotelInfoDiv = $('<div>');
                         var titleDiv = $('<div>');
                         var fontIcon = $('<i>');
-                        var iconButton = $('<a>');
+                        var iconButton = $('<button>');
 
                         titleDiv.addClass('hotelTitle');
                         fontIcon.addClass('fas');
                         fontIcon.addClass('fa-heart');
-                        iconButton.attr('href', '#');
+                        //iconButton.attr('href', '#');
                         iconButton.attr('id', 'heart');
+                        iconButton.addClass('favHotel');
+                        iconButton.attr('hotel', name);
+                        iconButton.attr('address', address);
+                        iconButton.attr('url', url);
+                        iconButton.attr('review', review)
                         hotelElem.text(name);
 
                         hotelElem.appendTo(titleDiv);
@@ -177,6 +185,7 @@ dbUser.on('value', function (snapshot) {
                         newImg = img.replace('square60', 'square200');
                         imgElem.attr('src', newImg);
                         imgElem.appendTo(nameImgBox);
+                        iconButton.attr('img', newImg);
 
                         hotelInfoDiv.addClass('address-review');
                         hotelInfoDiv.appendTo(hotelDiv);
@@ -206,206 +215,217 @@ dbUser.on('value', function (snapshot) {
                         $('#infoBox').append(hotelDiv)
                     }
                 })
-            });
         });
-            function getPlaceId(query) {
-                return $.ajax({
-                    url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/',
+    });
+    function getPlaceId(query) {
+        return $.ajax({
+            url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/',
+            headers: {
+                "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+                "x-rapidapi-key": "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
+            },
+            data: {
+                query
+            }
+
+        }).then(function (response) {
+            return response.Places[0].PlaceId
+        })
+
+    }
+
+    $('#flightbtn').on('click', function () {
+        $('#infoBox').empty();
+        getPlaceId(destination)
+            .then(function (destinationPlaceId) {
+                return getPlaceId(startPlace)
+                    .then(function (startPlaceId) {
+                        return {
+                            destinationPlaceId,
+                            startPlaceId
+                        }
+                    })
+            })
+            .then(function (data) {
+                // console.log(data)
+                var skyURL = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/' + data.startPlaceId + '/' + data.destinationPlaceId + '/' + startDateFix
+                $.ajax({
+                    url: skyURL,
                     headers: {
                         "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
                         "x-rapidapi-key": "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
-                    },
-                    data: {
-                        query
+                    }
+                }).then(function (response) {
+                    console.log(response)
+                    var quoteID = response.Quotes[0].OutboundLeg.CarrierIds[0];
+                    var airline = ''
+                    response.Carriers.forEach(function (carrier) {
+
+                        var carrierId = carrier.CarrierId
+
+                        if (quoteID === carrierId) {
+                            return airline = carrier.Name
+                        }
+
+                    })
+
+                    console.log(airline)
+
+                    var minPrice = response.Quotes[0].MinPrice
+                    var flightDiv = $('<div>');
+                    var carrier = $('<h1>')
+                    var flightCost = $('<p>');
+
+                    if (response.Quotes.length === 0) {
+                        return
                     }
 
-                }).then(function (response) {
-                    return response.Places[0].PlaceId
-                })
+                    carrier.text(airline);
+                    carrier.appendTo(flightDiv);
 
-            }
-
-            $('#flightbtn').on('click', function () {
-                $('#infoBox').empty();
-                getPlaceId(destination)
-                    .then(function (destinationPlaceId) {
-                        return getPlaceId(startPlace)
-                            .then(function (startPlaceId) {
-                                return {
-                                    destinationPlaceId,
-                                    startPlaceId
-                                }
-                            })
-                    })
-                    .then(function (data) {
-                        // console.log(data)
-                        var skyURL = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/' + data.startPlaceId + '/' + data.destinationPlaceId + '/' + startDateFix
-                        $.ajax({
-                            url: skyURL,
-                            headers: {
-                                "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-                                "x-rapidapi-key": "3d2f9a6cffmsh8668e9511e3f612p13972ajsnc1c701fd3e43"
-                            }
-                        }).then(function (response) {
-                            console.log(response)
-                            var quoteID = response.Quotes[0].OutboundLeg.CarrierIds[0];
-                            var airline = ''
-                            response.Carriers.forEach(function (carrier) {
-
-                                var carrierId = carrier.CarrierId
-
-                                if (quoteID === carrierId) {
-                                    return airline = carrier.Name
-                                }
-
-                            })
-
-                            console.log(airline)
-
-                            var minPrice = response.Quotes[0].MinPrice
-                            var flightDiv = $('<div>');
-                            var carrier = $('<h1>')
-                            var flightCost = $('<p>');
-
-                            if (response.Quotes.length === 0) {
-                                return
-                            }
-
-                            carrier.text(airline);
-                            carrier.appendTo(flightDiv);
-
-                            flightCost.html("<span>$</span>" + minPrice);
-                            flightCost.appendTo(flightDiv);
-
-                            flightDiv.addClass('card');
-                            flightDiv.addClass('col-lg-6');
-                            flightDiv.addClass('flightBox');
-
-                            $('#infoBox').append(flightDiv);
-
-                        })
-                    });
-
-            });
-
-            // ===== AJAX CALL TO ZOMATO ===== 
-
-            $('#foodbtn').on('click', function () {
-                // maybe .empty of infoBox here
-                $('#infoBox').empty();
-                $.ajax({
-                    url: 'https://developers.zomato.com/api/v2.1/locations',
-                    method: "GET",
-
-                    data: {
-                        apikey: "c493267fcaf15186d28434182e181ee9",
-                        query: destination
-                    }
-
-                }).then(function (cityData) {
-                    console.log(cityData);
-                    var type = cityData.location_suggestions[0].entity_type;
-                    var id = cityData.location_suggestions[0].entity_id;
-                    return $.ajax({
-                        url: 'https://developers.zomato.com/api/v2.1/location_details',
-                        method: 'GET',
-                        data: {
-                            apikey: "c493267fcaf15186d28434182e181ee9",
-                            entity_id: id,
-                            entity_type: type,
-
-                        }
-                    })
-
-                }).then(function (response) {
-
-                    var restaurants = response.best_rated_restaurant
-                    var requests = []
-                    // possibly make forEach
-                    restaurants.forEach(function (restaurant, i) {
-                        console.log(i)
-                        var id = restaurant.restaurant.id
-
-                        console.log(restaurant.restaurant.id)
-                        var restauranRequest = $.ajax({
-                            url: 'https://developers.zomato.com/api/v2.1/restaurant',
-                            method: 'GET',
-                            data: {
-                                apikey: "c493267fcaf15186d28434182e181ee9",
-                                res_id: id,
-
-
-                            }
-
-
-                        })
-                        if (i < 5) {
-
-                            requests.push(restauranRequest)
-                        }
-                        //push ajax call to requests
-                    })
-                    console.log(requests)
-                    return Promise.all(requests)
-
-
-                }).then(function (response) {
-                    // console.log(response[3])
-
-                    response.forEach(function (item) {
-
-                        var resDiv = $('<div>');
-                        var resImg = $('<img>');
-                        var restaurant = $('<h1>');
-                        var menu = $('<a>');
-                        var reviews = $('<p>');
-                        var phone = $('<p>');
-                        var resImgAndInfoDiv = $('<div>');
-                        var imgDiv = $('<div>');
-                        var resInfoDiv = $('<div>');
-                        
-                        restaurant.text(item.name);
-                        restaurant.appendTo(resDiv);
-
-                        resImg.attr('src', item.featured_image);
-                        resImg.attr('style', 'width:200px');
-                        resImg.appendTo(imgDiv);
-
-                        reviews.html('<span>Reviews: </span>' + item.all_reviews_count);
-                        reviews.appendTo(resInfoDiv);
-
-                        phone.html('<span>Phone: </span>' + item.phone_numbers);
-                        phone.appendTo(resInfoDiv);
-
-                        menu.text('Menu');
-                        menu.attr('href', item.menu_url);
-                        menu.attr('target', '_blank');
-                        menu.appendTo(resInfoDiv);
-
-                        resDiv.addClass('card');
-                        resDiv.addClass('col-lg-12');
-                        resDiv.addClass('foodBox');
-
-                        imgDiv.addClass('col-lg-4');
-                        resInfoDiv.addClass('col-lg-8');
-                        resImgAndInfoDiv.addClass('img-resInfo');
-
-                        resDiv.append(resImgAndInfoDiv);
-                        resImgAndInfoDiv.append(imgDiv);
-                        resImgAndInfoDiv.append(resInfoDiv);
-                        
-                        
-
-
-                        $('#infoBox').append(resDiv);
-                    })
-
+                    flightCost.html("<span>$</span>" + minPrice);
+                    flightCost.appendTo(flightDiv);
 
                     flightDiv.addClass('card');
                     flightDiv.addClass('col-lg-6');
                     flightDiv.addClass('flightBox');
 
                     $('#infoBox').append(flightDiv);
+
                 })
             });
+
+    });
+
+    // ===== AJAX CALL TO ZOMATO ===== 
+
+    $('#foodbtn').on('click', function () {
+        // maybe .empty of infoBox here
+        $('#infoBox').empty();
+        $.ajax({
+            url: 'https://developers.zomato.com/api/v2.1/locations',
+            method: "GET",
+
+            data: {
+                apikey: "c493267fcaf15186d28434182e181ee9",
+                query: destination
+            }
+
+        }).then(function (cityData) {
+            console.log(cityData);
+            var type = cityData.location_suggestions[0].entity_type;
+            var id = cityData.location_suggestions[0].entity_id;
+            return $.ajax({
+                url: 'https://developers.zomato.com/api/v2.1/location_details',
+                method: 'GET',
+                data: {
+                    apikey: "c493267fcaf15186d28434182e181ee9",
+                    entity_id: id,
+                    entity_type: type,
+
+                }
+            })
+
+        }).then(function (response) {
+
+            var restaurants = response.best_rated_restaurant
+            var requests = []
+            // possibly make forEach
+            restaurants.forEach(function (restaurant, i) {
+                console.log(i)
+                var id = restaurant.restaurant.id
+
+                console.log(restaurant.restaurant.id)
+                var restauranRequest = $.ajax({
+                    url: 'https://developers.zomato.com/api/v2.1/restaurant',
+                    method: 'GET',
+                    data: {
+                        apikey: "c493267fcaf15186d28434182e181ee9",
+                        res_id: id,
+
+
+                    }
+
+
+                })
+                if (i < 5) {
+
+                    requests.push(restauranRequest)
+                }
+                //push ajax call to requests
+            })
+            console.log(requests)
+            return Promise.all(requests)
+
+
+        }).then(function (response) {
+            // console.log(response[3])
+
+            response.forEach(function (item) {
+
+                var resDiv = $('<div>');
+                var resImg = $('<img>');
+                var restaurant = $('<h1>');
+                var menu = $('<a>');
+                var reviews = $('<p>');
+                var phone = $('<p>');
+                var resImgAndInfoDiv = $('<div>');
+                var imgDiv = $('<div>');
+                var resInfoDiv = $('<div>');
+
+                restaurant.text(item.name);
+                restaurant.appendTo(resDiv);
+
+                resImg.attr('src', item.featured_image);
+                resImg.attr('style', 'width:200px');
+                resImg.appendTo(imgDiv);
+
+                reviews.html('<span>Reviews: </span>' + item.all_reviews_count);
+                reviews.appendTo(resInfoDiv);
+
+                phone.html('<span>Phone: </span>' + item.phone_numbers);
+                phone.appendTo(resInfoDiv);
+
+                menu.text('Menu');
+                menu.attr('href', item.menu_url);
+                menu.attr('target', '_blank');
+                menu.appendTo(resInfoDiv);
+
+                resDiv.addClass('card');
+                resDiv.addClass('col-lg-12');
+                resDiv.addClass('foodBox');
+
+                imgDiv.addClass('col-lg-4');
+                resInfoDiv.addClass('col-lg-8');
+                resImgAndInfoDiv.addClass('img-resInfo');
+
+                resDiv.append(resImgAndInfoDiv);
+                resImgAndInfoDiv.append(imgDiv);
+                resImgAndInfoDiv.append(resInfoDiv);
+
+
+
+
+                $('#infoBox').append(resDiv);
+            })
+        })
+    });
+})
+
+$(document).on('click', '.favHotel', function () {
+
+    var hotel = $(this).attr('hotel');
+    var address = $(this).attr('address');
+    var url = $(this).attr('url');
+    var review = $(this).attr('review');
+    var img = $(this).attr('img');
+
+    dbUserFavHotel.push({
+        hotel: hotel,
+        address: address,
+        url: url,
+        review: review,
+        img: img,
+    })
+
 })
