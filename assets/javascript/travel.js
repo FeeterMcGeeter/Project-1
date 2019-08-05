@@ -8,6 +8,7 @@ var firebaseConfig = {
     messagingSenderId: "301156682375",
     appId: "1:301156682375:web:37c5c7813602600a"
 };
+
 // ===== Initialize Firebase =====
 firebase.initializeApp(firebaseConfig);
 
@@ -142,84 +143,83 @@ dbUser.on('value', function (snapshot) {
                     departure_date: endDateFix,
                     room_qty: "1"
                 }
+            }).then(function (hotelBookings) {
+
+                console.log(hotelBookings.result[2])
+
+                for (var i = 0; i <= 4; i++) {
+                    var address = hotelBookings.result[i].address;
+                    var name = hotelBookings.result[i].hotel_name;
+                    var url = hotelBookings.result[i].url;
+                    var review = hotelBookings.result[i].review_score;
+                    var img = hotelBookings.result[i].main_photo_url;
+                    var newImg = '';
+                    var hotelDiv = $('<div>');
+                    var nameImgBox = $('<div>');
+                    var infoElem = $('<div>');
+                    var addElem = $('<p>');
+                    var hotelElem = $('<h2>');
+                    var urlElem = $('<a>');
+                    var reviewElem = $('<p>');
+                    var imgElem = $('<img>');
+                    var hotelInfoDiv = $('<div>');
+                    var titleDiv = $('<div>');
+                    var fontIcon = $('<i>');
+                    var iconButton = $('<button>');
+
+                    titleDiv.addClass('hotelTitle');
+                    fontIcon.addClass('fas');
+                    fontIcon.addClass('fa-heart');
+                    iconButton.addClass('favHotel');
+                    iconButton.addClass('favBtn');
+                    iconButton.attr('id', 'heart');
+                    iconButton.attr('hotel', name);
+                    iconButton.attr('address', address);
+                    iconButton.attr('url', url);
+                    iconButton.attr('review', review)
+                    hotelElem.text(name);
+
+                    hotelElem.appendTo(titleDiv);
+                    fontIcon.appendTo(iconButton);
+                    iconButton.appendTo(titleDiv);
+                    titleDiv.appendTo(hotelDiv);
+
+                    newImg = img.replace('square60', 'square200');
+                    imgElem.attr('src', newImg);
+                    imgElem.appendTo(nameImgBox);
+                    iconButton.attr('img', newImg);
+
+                    hotelInfoDiv.addClass('address-review');
+                    hotelInfoDiv.appendTo(hotelDiv);
+
+                    nameImgBox.appendTo(hotelInfoDiv);
+                    nameImgBox.addClass('col-lg-4')
+
+                    addElem.html('<span>Address: </span>' + address);
+                    addElem.appendTo(infoElem);
+
+                    reviewElem.html('<span>Review Score: </span>' + review);
+                    reviewElem.appendTo(infoElem);
+
+                    urlElem.text('Book Here');
+                    urlElem.attr('href', url);
+                    urlElem.attr('target', '_blank');
+                    urlElem.appendTo(infoElem);
+
+                    infoElem.appendTo(hotelInfoDiv);
+                    infoElem.addClass('col-lg-8');
+
+                    hotelDiv.addClass('card');
+                    hotelDiv.addClass('col-lg-12');
+                    hotelDiv.addClass('row');
+                    hotelDiv.addClass('hotelBox')
+
+                    $('#infoBox').append(hotelDiv)
+                }
             })
-
-                .then(function (hotelBookings) {
-
-                    console.log(hotelBookings.result[2])
-
-                    for (var i = 0; i <= 9; i++) {
-                        var address = hotelBookings.result[i].address;
-                        var name = hotelBookings.result[i].hotel_name;
-                        var url = hotelBookings.result[i].url;
-                        var review = hotelBookings.result[i].review_score;
-                        var img = hotelBookings.result[i].main_photo_url;
-                        var newImg = '';
-                        var hotelDiv = $('<div>');
-                        var nameImgBox = $('<div>');
-                        var infoElem = $('<div>');
-                        var addElem = $('<p>');
-                        var hotelElem = $('<h2>');
-                        var urlElem = $('<a>');
-                        var reviewElem = $('<p>');
-                        var imgElem = $('<img>');
-                        var hotelInfoDiv = $('<div>');
-                        var titleDiv = $('<div>');
-                        var fontIcon = $('<i>');
-                        var iconButton = $('<button>');
-
-                        titleDiv.addClass('hotelTitle');
-                        fontIcon.addClass('fas');
-                        fontIcon.addClass('fa-heart');
-                        //iconButton.attr('href', '#');
-                        iconButton.attr('id', 'heart');
-                        iconButton.addClass('favHotel');
-                        iconButton.attr('hotel', name);
-                        iconButton.attr('address', address);
-                        iconButton.attr('url', url);
-                        iconButton.attr('review', review)
-                        hotelElem.text(name);
-
-                        hotelElem.appendTo(titleDiv);
-                        fontIcon.appendTo(iconButton);
-                        iconButton.appendTo(titleDiv);
-                        titleDiv.appendTo(hotelDiv);
-
-                        newImg = img.replace('square60', 'square200');
-                        imgElem.attr('src', newImg);
-                        imgElem.appendTo(nameImgBox);
-                        iconButton.attr('img', newImg);
-
-                        hotelInfoDiv.addClass('address-review');
-                        hotelInfoDiv.appendTo(hotelDiv);
-
-                        nameImgBox.appendTo(hotelInfoDiv);
-                        nameImgBox.addClass('col-lg-4')
-
-                        addElem.html('<span>Address: </span>' + address);
-                        addElem.appendTo(infoElem);
-
-                        reviewElem.html('<span>Review Score: </span>' + review);
-                        reviewElem.appendTo(infoElem);
-
-                        urlElem.text('Book Here');
-                        urlElem.attr('href', url);
-                        urlElem.attr('target', '_blank');
-                        urlElem.appendTo(infoElem);
-
-                        infoElem.appendTo(hotelInfoDiv);
-                        infoElem.addClass('col-lg-8');
-
-                        hotelDiv.addClass('card');
-                        hotelDiv.addClass('col-lg-12');
-                        hotelDiv.addClass('row');
-                        hotelDiv.addClass('hotelBox')
-
-                        $('#infoBox').append(hotelDiv)
-                    }
-                })
         });
     });
+
     function getPlaceId(query) {
         return $.ajax({
             url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/',
@@ -230,11 +230,9 @@ dbUser.on('value', function (snapshot) {
             data: {
                 query
             }
-
         }).then(function (response) {
             return response.Places[0].PlaceId
         })
-
     }
 
     $('#flightbtn').on('click', function () {
@@ -294,10 +292,8 @@ dbUser.on('value', function (snapshot) {
                     flightDiv.addClass('flightBox');
 
                     $('#infoBox').append(flightDiv);
-
                 })
             });
-
     });
 
     // ===== AJAX CALL TO ZOMATO ===== 
@@ -345,11 +341,7 @@ dbUser.on('value', function (snapshot) {
                     data: {
                         apikey: "c493267fcaf15186d28434182e181ee9",
                         res_id: id,
-
-
                     }
-
-
                 })
                 if (i < 10) {
 
@@ -359,8 +351,6 @@ dbUser.on('value', function (snapshot) {
             })
             console.log(requests)
             return Promise.all(requests)
-
-
         }).then(function (response) {
             // console.log(response[3])
 
@@ -368,16 +358,28 @@ dbUser.on('value', function (snapshot) {
 
                 var resDiv = $('<div>');
                 var resImg = $('<img>');
-                var restaurant = $('<h1>');
+                var restaurant = $('<h2>');
                 var menu = $('<a>');
                 var reviews = $('<p>');
                 var phone = $('<p>');
                 var resImgAndInfoDiv = $('<div>');
                 var imgDiv = $('<div>');
                 var resInfoDiv = $('<div>');
+                var resTitleDiv = $('<div>');
+                var heartButton = $('<button>');
+                var heartIcon = $('<i>');
 
+                heartButton.attr('id', 'foodFav');
+                heartButton.addClass('favBtn');
+                heartIcon.addClass('fas');
+                heartIcon.addClass('fa-heart');
+                resTitleDiv.addClass('foodTitle');
                 restaurant.text(item.name);
-                restaurant.appendTo(resDiv);
+
+                restaurant.appendTo(resTitleDiv);
+                heartIcon.appendTo(heartButton);
+                heartButton.appendTo(resTitleDiv);
+                resTitleDiv.appendTo(resDiv);
 
                 resImg.attr('src', item.featured_image);
                 resImg.attr('style', 'width:200px');
@@ -406,9 +408,6 @@ dbUser.on('value', function (snapshot) {
                 resImgAndInfoDiv.append(imgDiv);
                 resImgAndInfoDiv.append(resInfoDiv);
 
-
-
-
                 $('#infoBox').append(resDiv);
             })
         })
@@ -430,5 +429,5 @@ $(document).on('click', '.favHotel', function () {
         review: review,
         img: img,
     })
-
 })
+
