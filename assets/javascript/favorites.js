@@ -22,6 +22,12 @@ var id = localStorage.user
 var favId = localStorage.userFav
 
 // ===== Variable database ref object to the child userSearch =====
-var dbUser = database.ref().child('user').child(id);
+var dbUserFav = database.ref().child('fav').child(favId)
 var dbUserFavHotel = database.ref().child('fav').child(favId).child('hotel')
-var dbUserFavFood = databaase.ref().child('fav').child(favId).child('food')
+var dbUserFavFood = database.ref().child('fav').child(favId).child('food')
+
+dbUserFav.on('value',function(snapshot){
+    var sv = snapshot.val();
+    console.log(sv.hotel);
+
+})
