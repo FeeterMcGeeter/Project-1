@@ -26,8 +26,20 @@ var dbUserFav = database.ref().child('fav').child(favId)
 var dbUserFavHotel = database.ref().child('fav').child(favId).child('hotel')
 var dbUserFavFood = database.ref().child('fav').child(favId).child('food')
 
-dbUserFav.on('value',function(snapshot){
-    var sv = snapshot.val();
-    console.log(sv.hotel);
-    console.log(sv.food)
+
+$('#hotelFavBtn').on('click',function(){
+    dbUserFavHotel.on('value',function(snapshot){
+        var sv = snapshot.val();
+        console.log(sv)
+        
+    })
+})
+
+$('#foodFavBtn').on('click',function(){
+    dbUserFavFood.on('value',function(snapshot){
+        var sv = snapshot.val();
+        console.log(sv)
+
+        
+    })
 })

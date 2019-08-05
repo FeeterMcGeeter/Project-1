@@ -325,17 +325,7 @@ hr {
 }
 
 /* ==================== FAVORITES PAGE ==================== */
-.favorites-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
 
-.favorites {
-    margin-right: 40px;
-    outline: none;
-}
 
 /* ===== GLOBAL FOOTER ====== */
 .global-footer {

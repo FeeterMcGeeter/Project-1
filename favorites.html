@@ -36,19 +36,10 @@
             </nav>
         </div>
 
-        <!-- ===== DROPDOWN MENUS FOR THE FAVORITED AND PREVIOUSLY SEARCHED BUTTONS ===== -->
-        <div class="row favorites-row">
-            <div class="btn-group">
-                <button class="btn btn-secondary btn-lg dropdown-toggle favorites" type="button" data-toggle="dropdown" aria-haspopup="true"           aria-expanded="false">Favorited Hotels
-                </button>
-                <div class="dropdown-menu" id="favorited"></div>
-            </div>
-
-            <div class="btn-group">
-                <button class="btn btn-secondary btn-lg dropdown-toggle favorites" type="button" data-toggle="dropdown" aria-haspopup="true"            aria-expanded="false">Favorited Restaurants
-                </button>
-                <div class="dropdown-menu" id="recentSearches"></div>
-            </div>
+        <!-- ===== MENU BUTTONS FOR THE FAVORITED AND PREVIOUSLY SEARCHED BUTTONS ===== -->
+        <div class="row d-flex justify-content-center" id="favInfoRow">
+            <button type="button" class="btn btn-tabs btn-light mr-3" id="hotelFavBtn">Hotel Favorites</button>
+            <button type="button" class="btn btn-tabs btn-light" id="foodFavBtn">Restaurant Favorites</button>
         </div>
 
         <!-- ===== PUSHES THE FOOTER DOWN ===== -->
