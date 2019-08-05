@@ -29,5 +29,5 @@ var dbUserFavFood = database.ref().child('fav').child(favId).child('food')
 dbUserFav.on('value',function(snapshot){
     var sv = snapshot.val();
     console.log(sv.hotel);
-
+    console.log(sv.food)
 })
