@@ -238,6 +238,20 @@ hr {
     margin-bottom: 10px;
 }
 
+.hotelTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fa-heart {
+    color: #F5F5F5;
+    text-shadow:
+		-1px -1px 0 #B22222,
+		1px -1px 0 #B22222,
+		-1px 1px 0 #B22222,
+		1px 1px 0 #B22222;
+}
+
 .address-review {
     display: flex;
     font-family: 'Source Sans Pro', sans-serif;

@@ -158,9 +158,21 @@ dbUser.on('value', function (snapshot) {
                         var reviewElem = $('<p>');
                         var imgElem = $('<img>');
                         var hotelInfoDiv = $('<div>');
+                        var titleDiv = $('<div>');
+                        var fontIcon = $('<i>');
+                        var iconButton = $('<a>');
 
+                        titleDiv.addClass('hotelTitle');
+                        fontIcon.addClass('fas');
+                        fontIcon.addClass('fa-heart');
+                        iconButton.attr('href', '#');
+                        iconButton.attr('id', 'heart');
                         hotelElem.text(name);
-                        hotelElem.appendTo(hotelDiv);
+
+                        hotelElem.appendTo(titleDiv);
+                        fontIcon.appendTo(iconButton);
+                        iconButton.appendTo(titleDiv);
+                        titleDiv.appendTo(hotelDiv);
 
                         newImg = img.replace('square60', 'square200');
                         imgElem.attr('src', newImg);
