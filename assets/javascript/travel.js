@@ -258,7 +258,7 @@ dbUser.on('value', function (snapshot) {
                             carrier.text(airline);
                             carrier.appendTo(flightDiv);
 
-                            flightCost.text('$' + minPrice);
+                            flightCost.html("<span>$</span>" + minPrice);
                             flightCost.appendTo(flightDiv);
 
                             flightDiv.addClass('card');

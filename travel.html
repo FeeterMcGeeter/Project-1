@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/reset.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
+    <!-- ===== FONT AWESOME KIT ===== -->
+    <script src="https://kit.fontawesome.com/f98cc017d1.js"></script>
     <!-- ===== BOOTSTRAP CDN ===== -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -17,7 +19,7 @@
 <body>
     <!-- ===== MAIN NAVIGATION BAR =====  -->
     <div class="wrapper">
-        <div class="container-fluid bg-primary mb-5 p-0" id="global-header">
+        <div class="container-fluid bg-primary mb-3 p-0" id="global-header">
             <nav class="navbar navbar-expand-md navbar-light bg-primary">
                 <a class="navbar-brand" href="./index.html">
                     <img src="./assets/images/hangrylogo.png" width="75" height="75" class="d-inline-block align-top"
@@ -38,35 +40,28 @@
         </div>
 
         <!-- ===== CONTAINER FOR USER REQUESTED HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
-        <div class="container d-flex justify-content-center mb-3">
-            <div class="row" id="btnInfoRow">
-                <button type="button" class="btn btn-tabs btn-light mr-3" id="flightbtn">Flights</button>
-                <button type="button" class="btn btn-tabs btn-light mr-3" id="hotelbtn">Hotels</button>
-                <button type="button" class="btn btn-tabs btn-light" id="foodbtn">Food</button>
-            </div>
+        <div class="row d-flex justify-content-center" id="btnInfoRow">
+            <button type="button" class="btn btn-tabs btn-light mr-3" id="flightbtn">Flights</button>
+            <button type="button" class="btn btn-tabs btn-light mr-3" id="hotelbtn">Hotels</button>
+            <button type="button" class="btn btn-tabs btn-light" id="foodbtn">Food</button>
         </div>
-
+        
         <!-- ===== WEATHER FORECAST FOR CITY REQUESTED ===== -->
-        <div class="row" id="weather-data">
-
+        <div class="weather-container">
+            <div class="fiveDayForecast"><i class="fas fa-sun"></i> 5-Day Forecast</div>
+            <div id="weather-data"></div>
         </div>
-
-        <div class="clearfix"></div>
 
         <!-- ===== CONTAINER FOR DATA OUTPUT HOTEL/FLIGHTS/RESTAURANT INFORMATION ===== -->
-        <div class="container">
-            <div class="row" id="infoBox">
-
-
-            </div>
+        <div class="container-api">
+            <div class="row" id="infoBox"></div>
         </div>
     </div>
-
 
     <!-- ===== FOOTER ===== -->
     <div class="container-fluid global-footer">
         <footer class="footer">
-            <p>Copyright &copy;</p>
+            <p>&copy; The Hangry Traveler</p>
         </footer>
     </div>
 
