@@ -16,9 +16,10 @@ var database = firebase.database();
 
 // ===== Variable for storing randomly generated key to localeStorage =====
 var id = '';
-
+var favId = '';
 // ==== Variable database ref object to the child userSearch ====
 var dbUser = database.ref().child('user');
+var dbUserFav = database.ref().child('fav')
 
 // ===== CLICK HANDLER FOR THE SEARCH BUTTON =====
 $("#searchButton").on("click", function (event) {
@@ -38,19 +39,28 @@ $("#searchButton").on("click", function (event) {
         endDate: endDate,
     })
 
+    dbUserFav.push({
+        destination: destination,
+    })
+
     // ====== Storing randomly generated key to localStorage as user ====
     dbUser.on('child_added', function (snapshot) {
         id = snapshot.key
     })
     localStorage.setItem('user', id)
 
+    dbUserFav.on('child_added', function (snapshot) {
+        favId = snapshot.key
+    })
+    localStorage.setItem('userFav',favId);
+    
     if (startPlace !== "" && destination !== ""
         && startDate !== "" && endDate !== "") {
         window.location.replace('./travel.html')
     } else {
-            $(".modal").modal('show')
+        $(".modal").modal('show')
 
     }
-    
+
 });
 
