@@ -42,67 +42,44 @@ $('#hotelFavBtn').on('click', function () {
             var review = hotel[k].review;
             var url = hotel[k].url
             console.log(name)
-            var hotelDiv = $('<div>');
-                    var nameImgBox = $('<div>');
-                    var infoElem = $('<div>');
-                    var addElem = $('<p>');
-                    var hotelElem = $('<h2>');
-                    var urlElem = $('<a>');
-                    var reviewElem = $('<p>');
-                    var imgElem = $('<img>');
-                    var hotelInfoDiv = $('<div>');
-                    var titleDiv = $('<div>');
-                    var fontIcon = $('<i>');
-                    var iconButton = $('<button>');
 
-                    titleDiv.addClass('hotelTitle');
-                    fontIcon.addClass('fas');
-                    fontIcon.addClass('fa-heart');
-                    iconButton.addClass('favHotel');
-                    iconButton.addClass('favBtn');
-                    iconButton.attr('id', 'heart');
-                    iconButton.attr('hotel', name);
-                    iconButton.attr('address', address);
-                    iconButton.attr('url', url);
-                    iconButton.attr('review', review)
-                    hotelElem.text(name);
+            var hotelDiv = $('<div>')
+            var nameImgBox = $('<div>')
+            var hotelElem = $('<h2>')
+            var addressElem = $('<p>')
+            var urlElem = $('<a>')
+            var reviewElem = $('<p>')
+            var imgElem = $('<img>')
+            var hotelInfoDiv = $('<div>')
 
-                    hotelElem.appendTo(titleDiv);
-                    fontIcon.appendTo(iconButton);
-                    iconButton.appendTo(titleDiv);
-                    titleDiv.appendTo(hotelDiv);
+            hotelElem.text(name)
+            hotelElem.appendTo(nameImgBox)
 
-                    newImg = img.replace('square60', 'square200');
-                    imgElem.attr('src', newImg);
-                    imgElem.appendTo(nameImgBox);
-                    iconButton.attr('img', newImg);
+            imgElem.attr('src', img)
+            imgElem.appendTo(nameImgBox)
 
-                    hotelInfoDiv.addClass('address-review');
-                    hotelInfoDiv.appendTo(hotelDiv);
+            addressElem.text('Address: ' + address)
+            addressElem.appendTo(hotelInfoDiv)
 
-                    nameImgBox.appendTo(hotelInfoDiv);
-                    nameImgBox.addClass('col-lg-4')
+            reviewElem.text('Review: ' + review)
+            reviewElem.appendTo(hotelInfoDiv)
 
-                    addElem.html('<span>Address: </span>' + address);
-                    addElem.appendTo(infoElem);
+            urlElem.text('Book Here')
+            urlElem.attr('href', url)
+            urlElem.attr('target', '_blank')
+            urlElem.appendTo(hotelInfoDiv)
 
-                    reviewElem.html('<span>Review Score: </span>' + review);
-                    reviewElem.appendTo(infoElem);
+            nameImgBox.addClass('col-lg-4')
+            nameImgBox.appendTo(hotelDiv)
 
-                    urlElem.text('Book Here');
-                    urlElem.attr('href', url);
-                    urlElem.attr('target', '_blank');
-                    urlElem.appendTo(infoElem);
+            hotelInfoDiv.addClass('col-lg-8')
+            hotelInfoDiv.appendTo(hotelDiv)
 
-                    infoElem.appendTo(hotelInfoDiv);
-                    infoElem.addClass('col-lg-8');
+            hotelDiv.addClass('card')
+            hotelDiv.addClass('col-lg-12')
+            hotelDiv.addClass('row')
 
-                    hotelDiv.addClass('card');
-                    hotelDiv.addClass('col-lg-12');
-                    hotelDiv.addClass('row');
-                    hotelDiv.addClass('hotelBox')
-
-                    $('#infoBox').append(hotelDiv)
+            $('#infoBox').append(hotelDiv)
         }
 
     })
@@ -112,75 +89,63 @@ $('#hotelFavBtn').on('click', function () {
 $('#foodFavBtn').on('click', function () {
     dbUserFavFood.on('value', function (snapshot) {
         var restaurant = snapshot.val();
-        var key = Object.keys(name);
-
-        for (var i = 0; i < key.length; i++) {
-            var k = key[i];
-            var name = restaurant[k].name;
-            var phone = restaurant[k].phone;
-            var img = restaurant[k].imgURL;
-            var review = restaurant[k].review;
-            var menuURL = restaurant[k].menuURL;
-            console.log(name)
-            var resDiv = $('<div>');
-                var resImg = $('<img>');
-                var restaurant = $('<h2>');
-                var menu = $('<a>');
-                var reviews = $('<p>');
-                var phone = $('<p>');
-                var resImgAndInfoDiv = $('<div>');
-                var imgDiv = $('<div>');
-                var resInfoDiv = $('<div>');
-                var resTitleDiv = $('<div>');
-                var heartButton = $('<button>');
-                var heartIcon = $('<i>');
-
-                heartButton.addClass('foodFav');
-                heartButton.addClass('favBtn');
-                heartIcon.addClass('fas');
-                heartIcon.addClass('fa-heart');
-                resTitleDiv.addClass('foodTitle');
-                restaurant.text(name);
-
-                restaurant.appendTo(resTitleDiv);
-                heartIcon.appendTo(heartButton);
-                resTitleDiv.appendTo(resDiv);
-
-                resImg.attr('src', img);
-                resImg.attr('style', 'width:200px');
-                resImg.appendTo(imgDiv);
-                heartButton.attr('img',item.featured_image);
-
-                reviews.html('<span>Reviews: </span>' + review);
-                reviews.appendTo(resInfoDiv);
-                
-
-                phone.html('<span>Phone: </span>' + phone);
-                phone.appendTo(resInfoDiv);
-           
-
-                menu.text('Menu');
-                menu.attr('href', menuURL);
-                menu.attr('target', '_blank');
-                menu.appendTo(resInfoDiv);
-        
-
-                resDiv.addClass('card');
-                resDiv.addClass('col-lg-12');
-                resDiv.addClass('foodBox');
-
-                imgDiv.addClass('col-lg-4');
-                resInfoDiv.addClass('col-lg-8');
-                resImgAndInfoDiv.addClass('img-resInfo');
-
-                resDiv.append(resImgAndInfoDiv);
-                resImgAndInfoDiv.append(imgDiv);
-                resImgAndInfoDiv.append(resInfoDiv);
-
-                $('#infoBox').append(resDiv);
-        }
-        
-        console.log(restaurant)
+        var key = Object.keys(address);
+        console.log(key)
+// 
+        // for (var i = 0; i < key.length; i++) {
+            // var k = key[i];
+            // var name = restaurant[k].name;
+            // var phone = restaurant[k].phone;
+            // var img = restaurant[k].imgURL;
+            // var review = restaurant[k].review;
+            // var menuURL = restaurant[k].menuURL;
+            // var address = restaurant[k].address;
+            // console.log(name)
+// 
+            // var resDiv = $('<div>')
+            // var nameImgBox = $('<div>')
+            // var resElem = $('<h2>')
+            // var addressElem = $('<p>')
+            // var menuElem = $('<a>')
+            // var reviewElem = $('<p>')
+            // var imgElem = $('<img>')
+            // var resInfoDiv = $('<div>')
+            // var phoneElem = $('<p>')
+// 
+            // resElem.text(name)
+            // reslElem.appendTo(nameImgBox)
+// 
+            // imgElem.attr('src', img)
+            // imgElem.attr('style', 'width:200px')
+            // imgElem.appendTo(nameImgBox)
+// 
+            // addressElem.text('Address: ' + address)
+            // addressElem.appendTo(resInfoDiv)
+// 
+            // reviewElem.text('Review: ' + review)
+            // reviewElem.appendTo(resInfoDiv)
+// 
+            // menuElem.text('menu')
+            // menuElem.attr('href', menuURL)
+            // menuElem.attr('target', '_blank')
+            // menuElem.appendTo(resInfoDiv)
+// 
+            // nameImgBox.addClass('col-lg-4')
+            // nameImgBox.appendTo(resDiv)
+// 
+            // resInfoDiv.addClass('col-lg-8')
+            // resInfoDiv.appendTo(resDiv)
+// 
+            // resDiv.addClass('card')
+            // resDiv.addClass('col-lg-12')
+            // resDiv.addClass('row')
+// 
+// 
+// 
+// 
+        // }
+// 
+        // console.log(restaurant)
 
 
     })
