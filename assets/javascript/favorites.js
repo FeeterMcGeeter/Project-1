@@ -42,67 +42,53 @@ $('#hotelFavBtn').on('click', function () {
             var review = hotel[k].review;
             var url = hotel[k].url
             console.log(name)
-            var hotelDiv = $('<div>');
-                    var nameImgBox = $('<div>');
-                    var infoElem = $('<div>');
-                    var addElem = $('<p>');
-                    var hotelElem = $('<h2>');
-                    var urlElem = $('<a>');
-                    var reviewElem = $('<p>');
-                    var imgElem = $('<img>');
-                    var hotelInfoDiv = $('<div>');
-                    var titleDiv = $('<div>');
-                    var fontIcon = $('<i>');
-                    var iconButton = $('<button>');
+            
+            var hotelDiv = $('<div>')
+            var nameImgBox = $('<div>')
+            var hotelElem = $('<h2>')
+            var addressElem = $('<p>')
+            var urlElem = $('<a>')
+            var reviewElem = $('<p>')
+            var imgElem = $('<img>')
+            var hotelInfoDiv = $('<div>')
 
-                    titleDiv.addClass('hotelTitle');
-                    fontIcon.addClass('fas');
-                    fontIcon.addClass('fa-heart');
-                    iconButton.addClass('favHotel');
-                    iconButton.addClass('favBtn');
-                    iconButton.attr('id', 'heart');
-                    iconButton.attr('hotel', name);
-                    iconButton.attr('address', address);
-                    iconButton.attr('url', url);
-                    iconButton.attr('review', review)
-                    hotelElem.text(name);
+            hotelElem.text(name)
+            hotelElem.appendTo(nameImgBox)
+            
+            imgElem.attr('src', img)
+            imgElem.appendTo(nameImgBox)
 
-                    hotelElem.appendTo(titleDiv);
-                    fontIcon.appendTo(iconButton);
-                    iconButton.appendTo(titleDiv);
-                    titleDiv.appendTo(hotelDiv);
+            addressElem.text('Address: ' + address)
+            addressElem.appendTo(hotelInfoDiv)
 
-                    newImg = img.replace('square60', 'square200');
-                    imgElem.attr('src', newImg);
-                    imgElem.appendTo(nameImgBox);
-                    iconButton.attr('img', newImg);
+            reviewElem.text('Review: ' + review)
+            reviewElem.appendTo(hotelInfoDiv)
 
-                    hotelInfoDiv.addClass('address-review');
-                    hotelInfoDiv.appendTo(hotelDiv);
+            urlElem.text('Book Here')
+            urlElem.attr('href', url)
+            urlElem.attr('target', '_blank')
+            urlElem.appendTo(hotelInfoDiv)
 
-                    nameImgBox.appendTo(hotelInfoDiv);
-                    nameImgBox.addClass('col-lg-4')
+            nameImgBox.addClass('col-lg-4')
+            nameImgBox.appendTo(hotelDiv)
 
-                    addElem.html('<span>Address: </span>' + address);
-                    addElem.appendTo(infoElem);
+            hotelInfoDiv.addClass('col-lg-8')
+            hotelInfoDiv.appendTo(hotelDiv)
 
-                    reviewElem.html('<span>Review Score: </span>' + review);
-                    reviewElem.appendTo(infoElem);
+            hotelDiv.addClass('card')
+            hotelDiv.addClass('col-lg-12')
+            hotelDiv.addClass('row')
 
-                    urlElem.text('Book Here');
-                    urlElem.attr('href', url);
-                    urlElem.attr('target', '_blank');
-                    urlElem.appendTo(infoElem);
+            $('#infoBox').append(hotelDiv)
+            
 
-                    infoElem.appendTo(hotelInfoDiv);
-                    infoElem.addClass('col-lg-8');
 
-                    hotelDiv.addClass('card');
-                    hotelDiv.addClass('col-lg-12');
-                    hotelDiv.addClass('row');
-                    hotelDiv.addClass('hotelBox')
 
-                    $('#infoBox').append(hotelDiv)
+
+            
+
+
+
         }
 
     })
