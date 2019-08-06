@@ -8,4 +8,5 @@ App created for users to search destinations that will display weather, flight a
 ![Image of Search](./assets/images/image2.jpeg)
 ## API's Used
 
-## Tasks
+## Link to Site
+https://feetermcgeeter.github.io/Project-1/
