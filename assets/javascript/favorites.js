@@ -28,6 +28,9 @@ var dbUserFavFood = database.ref().child('fav').child(favId).child('food')
 
 
 $('#hotelFavBtn').on('click', function () {
+    
+    $('#infoBox').empty();
+
     dbUserFavHotel.on('value', function (snapshot) {
         var hotel = snapshot.val();
         var key = Object.keys(hotel)
@@ -87,65 +90,67 @@ $('#hotelFavBtn').on('click', function () {
 })
 
 $('#foodFavBtn').on('click', function () {
+
+    $('#infoBox').empty()
+
     dbUserFavFood.on('value', function (snapshot) {
         var restaurant = snapshot.val();
-        var key = Object.keys(address);
+        var key = Object.keys(snapshot.val());
+        console.log(restaurant)
         console.log(key)
-// 
-        // for (var i = 0; i < key.length; i++) {
-            // var k = key[i];
-            // var name = restaurant[k].name;
-            // var phone = restaurant[k].phone;
-            // var img = restaurant[k].imgURL;
-            // var review = restaurant[k].review;
-            // var menuURL = restaurant[k].menuURL;
-            // var address = restaurant[k].address;
-            // console.log(name)
-// 
-            // var resDiv = $('<div>')
-            // var nameImgBox = $('<div>')
-            // var resElem = $('<h2>')
-            // var addressElem = $('<p>')
-            // var menuElem = $('<a>')
-            // var reviewElem = $('<p>')
-            // var imgElem = $('<img>')
-            // var resInfoDiv = $('<div>')
-            // var phoneElem = $('<p>')
-// 
-            // resElem.text(name)
-            // reslElem.appendTo(nameImgBox)
-// 
-            // imgElem.attr('src', img)
-            // imgElem.attr('style', 'width:200px')
-            // imgElem.appendTo(nameImgBox)
-// 
-            // addressElem.text('Address: ' + address)
-            // addressElem.appendTo(resInfoDiv)
-// 
-            // reviewElem.text('Review: ' + review)
-            // reviewElem.appendTo(resInfoDiv)
-// 
-            // menuElem.text('menu')
-            // menuElem.attr('href', menuURL)
-            // menuElem.attr('target', '_blank')
-            // menuElem.appendTo(resInfoDiv)
-// 
-            // nameImgBox.addClass('col-lg-4')
-            // nameImgBox.appendTo(resDiv)
-// 
-            // resInfoDiv.addClass('col-lg-8')
-            // resInfoDiv.appendTo(resDiv)
-// 
-            // resDiv.addClass('card')
-            // resDiv.addClass('col-lg-12')
-            // resDiv.addClass('row')
-// 
-// 
-// 
-// 
-        // }
-// 
-        // console.log(restaurant)
+
+        for (var i = 0; i < key.length; i++) {
+            var k = key[i];
+            var name = restaurant[k].name;
+            var phone = restaurant[k].phone;
+            var img = restaurant[k].imgURL;
+            var review = restaurant[k].review;
+            var menuURL = restaurant[k].menuURL;
+            var address = restaurant[k].address;
+            console.log(name)
+
+            var resDiv = $('<div>')
+            var nameImgBox = $('<div>')
+            var resElem = $('<h2>')
+            var addressElem = $('<p>')
+            var menuElem = $('<a>')
+            var reviewElem = $('<p>')
+            var imgElem = $('<img>')
+            var resInfoDiv = $('<div>')
+            var phoneElem = $('<p>')
+
+            resElem.text(name)
+            resElem.appendTo(nameImgBox)
+
+            imgElem.attr('src', img)
+            imgElem.attr('style', 'width:200px')
+            imgElem.appendTo(nameImgBox)
+
+            addressElem.text('Address: ' + address)
+            addressElem.appendTo(resInfoDiv)
+
+            reviewElem.text('Review: ' + review)
+            reviewElem.appendTo(resInfoDiv)
+
+            menuElem.text('menu')
+            menuElem.attr('href', menuURL)
+            menuElem.attr('target', '_blank')
+            menuElem.appendTo(resInfoDiv)
+
+            nameImgBox.addClass('col-lg-4')
+            nameImgBox.appendTo(resDiv)
+
+            resInfoDiv.addClass('col-lg-8')
+            resInfoDiv.appendTo(resDiv)
+
+            resDiv.addClass('card')
+            resDiv.addClass('col-lg-12')
+            resDiv.addClass('row')
+
+            $('#infoBox').append(resDiv);
+        }
+
+        console.log(restaurant)
 
 
     })
