@@ -130,13 +130,13 @@ $('#foodFavBtn').on('click', function () {
             addressElem.html('<span>Address: </span>' + address)
             addressElem.appendTo(resInfoDiv)
 
-            phoneElem.html('<span>Phone: </span>' + phone.phone_numbers);
+            phoneElem.html('<span>Phone: </span>' + phone);
             phoneElem.appendTo(resInfoDiv);
-            
+
             reviewElem.html('<span>Review: </span>' + review)
             reviewElem.appendTo(resInfoDiv)
 
-            menuElem.text('menu')
+            menuElem.text('Menu')
             menuElem.attr('href', menuURL)
             menuElem.attr('target', '_blank')
             menuElem.appendTo(resInfoDiv)

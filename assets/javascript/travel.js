@@ -441,7 +441,10 @@ $(document).on('click', '.favHotel', function () {
         review: review,
         img: img,
     })
-    $(".modal").modal('show')
+    $("#favorites-modal").modal('show');
+    setTimeout(function() {
+        $("#favorites-modal").modal('hide');
+    }, 3000)
 })
 
 $(document).on('click', '.foodFav', function () {
@@ -463,6 +466,9 @@ $(document).on('click', '.foodFav', function () {
         address: resAddress,
     })
     $("#favorites-modal").modal('show');
+    setTimeout(function() {
+        $("#favorites-modal").modal('hide');
+    }, 3000)
 })
 
 
