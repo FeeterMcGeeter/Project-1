@@ -441,6 +441,7 @@ $(document).on('click', '.favHotel', function () {
         review: review,
         img: img,
     })
+    $(".modal").modal('show')
 })
 
 $(document).on('click', '.foodFav', function () {
@@ -461,5 +462,8 @@ $(document).on('click', '.foodFav', function () {
         phone: resPhone,
         address: resAddress,
     })
-
+    $("#favorites-modal").modal('show');
 })
+
+
+

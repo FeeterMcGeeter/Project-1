@@ -324,6 +324,18 @@ hr {
     color: #808080;
 }
 
+/* ===== MODAL FOR ADDING TO FAVORITES ===== */
+#favorites-modal {
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /* ==================== FAVORITES PAGE ==================== */
 #favInfoRow {
     margin: 0 0 40px 0;
