@@ -247,11 +247,11 @@ hr {
     padding-left: 15px;
 }
 
-#heart {
+.favBtn {
     align-self: end;
     background: none;
     border: none;
-    outline: none;
+    outline: none !important;
 }
 
 .address-review {
@@ -284,11 +284,11 @@ hr {
     padding-left: 15px;
 }
 
-#foodFav {
+.favBtn {
     align-self: end;
     background: none;
     border: none;
-    outline: none;
+    outline: none !important;
 }
 
 .img-resInfo {
@@ -324,8 +324,44 @@ hr {
     color: #808080;
 }
 
-/* ==================== FAVORITES PAGE ==================== */
+/* ===== MODAL FOR ADDING TO FAVORITES ===== */
+#favorites-modal {
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
+/* ==================== FAVORITES PAGE ==================== */
+#favInfoRow {
+    margin: 0 0 40px 0;
+}
+
+.favoriteCard {
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.favoriteCard img {
+    margin-bottom: 10px;
+}
+
+.favoriteCard span {
+    font-weight: 700;
+}
+
+.favoriteCard p {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.favoriteCard a:hover {
+    color: #FFA500;
+    text-decoration: none;
+}
 
 /* ===== GLOBAL FOOTER ====== */
 .global-footer {

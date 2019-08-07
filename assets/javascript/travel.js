@@ -376,6 +376,7 @@ dbUser.on('value', function (snapshot) {
                 heartIcon.addClass('fa-heart');
                 resTitleDiv.addClass('foodTitle');
                 restaurant.text(item.name);
+                heartButton.attr('id', 'heartIcon')
                 heartButton.attr('restaurant', item.name)
 
                 restaurant.appendTo(resTitleDiv);
@@ -440,6 +441,10 @@ $(document).on('click', '.favHotel', function () {
         review: review,
         img: img,
     })
+    $("#favorites-modal").modal('show');
+    setTimeout(function() {
+        $("#favorites-modal").modal('hide');
+    }, 3000)
 })
 
 $(document).on('click', '.foodFav', function () {
@@ -460,5 +465,11 @@ $(document).on('click', '.foodFav', function () {
         phone: resPhone,
         address: resAddress,
     })
-
+    $("#favorites-modal").modal('show');
+    setTimeout(function() {
+        $("#favorites-modal").modal('hide');
+    }, 3000)
 })
+
+
+
