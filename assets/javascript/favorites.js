@@ -61,10 +61,10 @@ $('#hotelFavBtn').on('click', function () {
             imgElem.attr('src', img)
             imgElem.appendTo(nameImgBox)
 
-            addressElem.text('Address: ' + address)
+            addressElem.html('<span>Address: </span>' + address)
             addressElem.appendTo(hotelInfoDiv)
 
-            reviewElem.text('Review: ' + review)
+            reviewElem.html('<span>Review: </span>' + review)
             reviewElem.appendTo(hotelInfoDiv)
 
             urlElem.text('Book Here')
@@ -80,6 +80,7 @@ $('#hotelFavBtn').on('click', function () {
 
             hotelDiv.addClass('card')
             hotelDiv.addClass('col-lg-12')
+            hotelDiv.addClass('favoriteCard')
             hotelDiv.addClass('row')
 
             $('#infoBox').append(hotelDiv)
@@ -126,10 +127,13 @@ $('#foodFavBtn').on('click', function () {
             imgElem.attr('style', 'width:200px')
             imgElem.appendTo(nameImgBox)
 
-            addressElem.text('Address: ' + address)
+            addressElem.html('<span>Address: </span>' + address)
             addressElem.appendTo(resInfoDiv)
 
-            reviewElem.text('Review: ' + review)
+            phoneElem.html('<span>Phone: </span>' + phone.phone_numbers);
+            phoneElem.appendTo(resInfoDiv);
+            
+            reviewElem.html('<span>Review: </span>' + review)
             reviewElem.appendTo(resInfoDiv)
 
             menuElem.text('menu')
@@ -145,6 +149,7 @@ $('#foodFavBtn').on('click', function () {
 
             resDiv.addClass('card')
             resDiv.addClass('col-lg-12')
+            resDiv.addClass('favoriteCard')
             resDiv.addClass('row')
 
             $('#infoBox').append(resDiv);

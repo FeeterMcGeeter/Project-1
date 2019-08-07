@@ -376,6 +376,7 @@ dbUser.on('value', function (snapshot) {
                 heartIcon.addClass('fa-heart');
                 resTitleDiv.addClass('foodTitle');
                 restaurant.text(item.name);
+                heartButton.attr('id', 'heartIcon')
                 heartButton.attr('restaurant', item.name)
 
                 restaurant.appendTo(resTitleDiv);
